@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，jdk的主目录。  
-##首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是">
+首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决tomcat中startup.bat一闪而过的问题">
 <meta property="og:url" content="http://yoursite.com/2016/11/17/解决tomcat中startup-bat一闪而过的问题/index.html">
 <meta property="og:site_name" content="ISLET">
 <meta property="og:description" content="在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，jdk的主目录。  
-##首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是">
-<meta property="og:updated_time" content="2016-11-17T14:07:03.180Z">
+首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bi">
+<meta property="og:updated_time" content="2016-11-18T14:04:28.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决tomcat中startup.bat一闪而过的问题">
 <meta name="twitter:description" content="在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，jdk的主目录。  
-##首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是">
+首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bi">
 
 
 
@@ -316,12 +316,12 @@
 
       
         <p>在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：<br>tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，jdk的主目录。  </p>
-<p>##首先<br>要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bin目录，并且不要加分号<br>如果这样配置，startup.bat还是一闪而过，可以右键点击startup.bat，编辑，在文本的最后敲上PAUSE，保存后重新运行startup.bat，这时候窗口不会再一闪而过，而是停留在桌面上（调试成功，把pause去掉即可）。<br>这时候就可以根据框内内容找到错误信息所在了，下面是窗口提示的错误的解决方法：</p>
-<p>##1. Neither the JAVA_HOME nor the JRE_HOME environment variable is defined<br>Tomcat的startup.bat调用了catalina.bat,而catalina.bat则调用了setclasspath.bat，只要在setclasspath.bat的开头声明环境变量就可以了，原因是后来较新版本安装完不会自动登记环境变量JAVA_HOME，JRE_HOME。<br>给setclasspath.bat的开头添加标记部分，如下：<br>rem —————————————————————————<br>rem Set CLASSPATH and Java options<br>rem<br>rem $Id: setclasspath.bat 505241 2007-02-09 10:22:58Z jfclere $<br>rem —————————————————————————<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.6.0_20</div><div class="line">set JRE_HOME=C:\Program Files\Java\jre6</div></pre></td></tr></table></figure></p>
+<h2 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h2><p>要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bin目录，并且不要加分号<br>如果这样配置，startup.bat还是一闪而过，可以右键点击startup.bat，编辑，在文本的最后敲上PAUSE，保存后重新运行startup.bat，这时候窗口不会再一闪而过，而是停留在桌面上（调试成功，把pause去掉即可）。<br>这时候就可以根据框内内容找到错误信息所在了，下面是窗口提示的错误的解决方法：</p>
+<h2 id="1-Neither-the-JAVA-HOME-nor-the-JRE-HOME-environment-variable-is-defined"><a href="#1-Neither-the-JAVA-HOME-nor-the-JRE-HOME-environment-variable-is-defined" class="headerlink" title="1. Neither the JAVA_HOME nor the JRE_HOME environment variable is defined"></a>1. Neither the JAVA_HOME nor the JRE_HOME environment variable is defined</h2><p>Tomcat的startup.bat调用了catalina.bat,而catalina.bat则调用了setclasspath.bat，只要在setclasspath.bat的开头声明环境变量就可以了，原因是后来较新版本安装完不会自动登记环境变量JAVA_HOME，JRE_HOME。<br>给setclasspath.bat的开头添加标记部分，如下：<br>rem —————————————————————————<br>rem Set CLASSPATH and Java options<br>rem<br>rem $Id: setclasspath.bat 505241 2007-02-09 10:22:58Z jfclere $<br>rem —————————————————————————<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.6.0_20</div><div class="line">set JRE_HOME=C:\Program Files\Java\jre6</div></pre></td></tr></table></figure></p>
 <p>rem Make sure prerequisite environment variables are set<br>if not “%JAVA_HOME%” == “” goto gotJdkHome<br>if not “%JRE_HOME%” == “” goto gotJreHome<br>echo Neither the JAVA_HOME nor the JRE_HOME environment variable is defined<br>echo At least one of these environment variable is needed to run this program<br>goto exit</p>
 <p>这样在每次运行startup.bat时就自动注册了JAVA_HOME，JRE_HOME。<br>运行startup.bat，提示信息：Server startup in xxxxx ms”  完工</p>
-<p>##2.Cannot find “”d:\apache-tomcat-6.0.32”\bin\setclasspath.bat”<br>这个时候，可能是CATALINA_HOME的值在某个地方被写死了，某些绿色版tomcat在bin文件下多了一个setenv.bat的文件，打开一看果然是在这里面被写死了CATALINA_HOME的路径，这应该是为了某种原因被人后加上的设置文件，把这个文件删除之后，tomcat可以正常运行了。<br>这种情况，可以去看catalina.bat中的配置，可能配置死的内容就在这个文件里。  </p>
-<p>##server.xml配置有错误<br>当用startup.bat启动tomcat时，如果server.xml配置有错误，那么startup.bat将闪一下就消失了，如果想让命令窗口停住，好方便查看错误信息，则用如下方法修改：修改catalina.bat，找到里面的:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">：doStart</div><div class="line">shift</div><div class="line"><span class="keyword">if</span> not <span class="string">"%OS%"</span> == <span class="string">"Windows_NT"</span> goto noTitle</div><div class="line">set _EXECJAVA=start %_RUNJAVA%</div><div class="line">goto gotTitle</div><div class="line">:noTitle</div><div class="line">set _EXECJAVA=start %_RUNJAVA%</div><div class="line">:gotTitle</div><div class="line"><span class="keyword">if</span> not <span class="string">""</span>%<span class="number">1</span><span class="string">""</span> == <span class="string">""</span>-security<span class="string">""</span> goto execCmd</div><div class="line">shift</div><div class="line">echo Using Security Manager</div><div class="line">set SECURITY_POLICY_FILE=%CATALINA_BASE%\conf\catalina.policy</div><div class="line">goto execCmd</div></pre></td></tr></table></figure></p>
+<h2 id="2-Cannot-find-“”d-apache-tomcat-6-0-32”-bin-setclasspath-bat”"><a href="#2-Cannot-find-“”d-apache-tomcat-6-0-32”-bin-setclasspath-bat”" class="headerlink" title="2.Cannot find “”d:\apache-tomcat-6.0.32”\bin\setclasspath.bat”"></a>2.Cannot find “”d:\apache-tomcat-6.0.32”\bin\setclasspath.bat”</h2><p>这个时候，可能是CATALINA_HOME的值在某个地方被写死了，某些绿色版tomcat在bin文件下多了一个setenv.bat的文件，打开一看果然是在这里面被写死了CATALINA_HOME的路径，这应该是为了某种原因被人后加上的设置文件，把这个文件删除之后，tomcat可以正常运行了。<br>这种情况，可以去看catalina.bat中的配置，可能配置死的内容就在这个文件里。  </p>
+<h2 id="server-xml配置有错误"><a href="#server-xml配置有错误" class="headerlink" title="server.xml配置有错误"></a>server.xml配置有错误</h2><p>当用startup.bat启动tomcat时，如果server.xml配置有错误，那么startup.bat将闪一下就消失了，如果想让命令窗口停住，好方便查看错误信息，则用如下方法修改：修改catalina.bat，找到里面的:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">：doStart</div><div class="line">shift</div><div class="line"><span class="keyword">if</span> not <span class="string">"%OS%"</span> == <span class="string">"Windows_NT"</span> goto noTitle</div><div class="line">set _EXECJAVA=start %_RUNJAVA%</div><div class="line">goto gotTitle</div><div class="line">:noTitle</div><div class="line">set _EXECJAVA=start %_RUNJAVA%</div><div class="line">:gotTitle</div><div class="line"><span class="keyword">if</span> not <span class="string">""</span>%<span class="number">1</span><span class="string">""</span> == <span class="string">""</span>-security<span class="string">""</span> goto execCmd</div><div class="line">shift</div><div class="line">echo Using Security Manager</div><div class="line">set SECURITY_POLICY_FILE=%CATALINA_BASE%\conf\catalina.policy</div><div class="line">goto execCmd</div></pre></td></tr></table></figure></p>
 <p>将上面set _EXECJAVA=start %_RUNJAVA% 中的start去掉，就可以让命令行出错后不消失。set _EXECJAVA=start %_RUNJAVA% 的意思是重新启动一个命令行窗口。去掉start后，则不会再重新启动窗口，就达到了使命令行停住的效果。要在命令行中启动startup.bat才能看到效果。</p>
 
       
@@ -476,7 +476,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先"><span class="nav-number">1.</span> <span class="nav-text">首先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Neither-the-JAVA-HOME-nor-the-JRE-HOME-environment-variable-is-defined"><span class="nav-number">2.</span> <span class="nav-text">1. Neither the JAVA_HOME nor the JRE_HOME environment variable is defined</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Cannot-find-“”d-apache-tomcat-6-0-32”-bin-setclasspath-bat”"><span class="nav-number">3.</span> <span class="nav-text">2.Cannot find “”d:\apache-tomcat-6.0.32”\bin\setclasspath.bat”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server-xml配置有错误"><span class="nav-number">4.</span> <span class="nav-text">server.xml配置有错误</span></a></li></ol></div>
             
           </div>
         </section>
