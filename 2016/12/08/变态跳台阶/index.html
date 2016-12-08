@@ -84,15 +84,19 @@
 
 
 
-<meta name="description" content="blingbling~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ISLET">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="题目一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+分析递归算法关于本题，前提是n个台阶会有一次n阶的跳法。分析如下:f(1) = 1f(2) = f(2-1) + f(2-2)         //f(2-2) 表示2阶一次跳2阶的次数。f(3) = f(3-1) + f(3-2) + f(3-3)…f(n) = f(n-1) +">
+<meta property="og:type" content="article">
+<meta property="og:title" content="变态跳台阶">
+<meta property="og:url" content="http://yoursite.com/2016/12/08/变态跳台阶/index.html">
 <meta property="og:site_name" content="ISLET">
-<meta property="og:description" content="blingbling~">
+<meta property="og:description" content="题目一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+分析递归算法关于本题，前提是n个台阶会有一次n阶的跳法。分析如下:f(1) = 1f(2) = f(2-1) + f(2-2)         //f(2-2) 表示2阶一次跳2阶的次数。f(3) = f(3-1) + f(3-2) + f(3-3)…f(n) = f(n-1) +">
+<meta property="og:updated_time" content="2016-12-08T13:18:09.714Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ISLET">
-<meta name="twitter:description" content="blingbling~">
+<meta name="twitter:title" content="变态跳台阶">
+<meta name="twitter:description" content="题目一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+分析递归算法关于本题，前提是n个台阶会有一次n阶的跳法。分析如下:f(1) = 1f(2) = f(2-1) + f(2-2)         //f(2-2) 表示2阶一次跳2阶的次数。f(3) = f(3-1) + f(3-2) + f(3-3)…f(n) = f(n-1) +">
 
 
 
@@ -113,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/08/变态跳台阶/"/>
 
-  <title> ISLET </title>
+  <title> 变态跳台阶 | ISLET </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,9 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -257,10 +259,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/12/08/变态跳台阶/" itemprop="url">
-                  变态跳台阶
-                </a>
+                变态跳台阶
               
             
           </h1>
@@ -316,26 +315,28 @@
       
 
       
-        
-          
-          题目一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
-分析递归算法关于本题，前提是n个台阶会有一次n阶的跳法。分析如下:f(1) = 1f(2) = f(2-1) + f(2-2)         //f(2-2) 表示2阶一次跳2阶的次
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/08/变态跳台阶/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>递归算法<br>关于本题，前提是n个台阶会有一次n阶的跳法。分析如下:<br>f(1) = 1<br>f(2) = f(2-1) + f(2-2)         //f(2-2) 表示2阶一次跳2阶的次数。<br>f(3) = f(3-1) + f(3-2) + f(3-3)<br>…<br>f(n) = f(n-1) + f(n-2) + f(n-3) + … + f(n-(n-1)) + f(n-n) </p>
+<h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><p>1）这里的f(n) 代表的是n个台阶有一次1,2,…n阶的 跳法数。<br>2）n = 1时，只有1种跳法，f(1) = 1<br>3) n = 2时，会有两个跳得方式，一次1阶或者2阶，这回归到了问题（1） ，f(2) = f(2-1) + f(2-2)<br>4) n = 3时，会有三种跳得方式，1阶、2阶、3阶，<br>    那么就是第一次跳出1阶后面剩下：f(3-1);第一次跳出2阶，剩下f(3-2)；第一次3阶，那么剩下f(3-3)<br>    因此结论是f(3) = f(3-1)+f(3-2)+f(3-3)<br>5) n = n时，会有n中跳的方式，1阶、2阶…n阶，得出结论：<br>    f(n) = f(n-1)+f(n-2)+…+f(n-(n-1)) + f(n-n) =&gt; f(0) + f(1) + f(2) + f(3) + … + f(n-1)</p>
+<p>6) 由以上已经是一种结论，但是为了简单，我们可以继续简化：<br>    f(n-1) = f(0) + f(1)+f(2)+f(3) + … + f((n-1)-1) = f(0) + f(1) + f(2) + f(3) + … + f(n-2)<br>    f(n) = f(0) + f(1) + f(2) + f(3) + … + f(n-2) + f(n-1) = f(n-1) + f(n-1)<br>    可以得出：<br>    f(n) = 2*f(n-1)</p>
+<p>7) 得出最终结论,在n阶台阶，一次有1、2、…n阶的跳的方式时，总得跳法为：<br>              | 1       ,(n=0 )<br>f(n) =     | 1       ,(n=1 )<br>              | 2*f(n-1),(n&gt;=2)  </p>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloorII</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (target &lt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">2</span> * JumpFloorII(target - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="扩展思想"><a href="#扩展思想" class="headerlink" title="扩展思想"></a>扩展思想</h2><p>在理解上述分析以后，可以推理出，当n&gt;=2时，f(n)=2<em>f(n-1)=2</em>2*f(n-2)=…=2^(n-1);<br>理解这些以后，我们就可以利用移位运算来解决这个问题，源码如下：</p>
+<h2 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a>源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jumpFloorII</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</div><div class="line"> 		<span class="keyword">if</span> (number &lt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>&lt;&lt;--number;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -343,365 +344,32 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/17/解决tomcat中startup-bat一闪而过的问题/" rel="next" title="解决tomcat中startup.bat一闪而过的问题">
+                <i class="fa fa-chevron-left"></i> 解决tomcat中startup.bat一闪而过的问题
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/11/17/解决tomcat中startup-bat一闪而过的问题/" itemprop="url">
-                  解决tomcat中startup.bat一闪而过的问题
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-17T21:38:28+08:00" content="2016-11-17">
-              2016-11-17
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/17/解决tomcat中startup-bat一闪而过的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/解决tomcat中startup-bat一闪而过的问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/11/17/解决tomcat中startup-bat一闪而过的问题/" class="leancloud_visitors" data-flag-title="解决tomcat中startup.bat一闪而过的问题">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，j
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/17/解决tomcat中startup-bat一闪而过的问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/22/ccf俄罗斯方块解题文档/" itemprop="url">
-                  ccf俄罗斯方块解题文档
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-22T19:58:08+08:00" content="2016-10-22">
-              2016-10-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/22/ccf俄罗斯方块解题文档/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/22/ccf俄罗斯方块解题文档/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/10/22/ccf俄罗斯方块解题文档/" class="leancloud_visitors" data-flag-title="ccf俄罗斯方块解题文档">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          折点计数完整代码123456789101112131415161718192021222324252627282930313233343536373839import java.util.Scanner;public class Main&#123;    public static void ma
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/22/ccf俄罗斯方块解题文档/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/06/我是一个小笨笨/" itemprop="url">
-                  我是一个小笨笨
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-06T20:41:43+08:00" content="2016-08-06">
-              2016-08-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/06/我是一个小笨笨/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/06/我是一个小笨笨/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/08/06/我是一个小笨笨/" class="leancloud_visitors" data-flag-title="我是一个小笨笨">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          我是小笨笨
-
-          
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/06/我是一个小笨笨/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -709,6 +377,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/08/变态跳台阶/"
+           data-title="变态跳台阶" data-url="http://yoursite.com/2016/12/08/变态跳台阶/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -728,8 +404,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://obhl5boin.bkt.clouddn.com/avtar.png"
@@ -783,6 +468,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明："><span class="nav-number">2.1.</span> <span class="nav-text">说明：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-number">3.</span> <span class="nav-text">源码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展思想"><span class="nav-number">3.1.</span> <span class="nav-text">扩展思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码-1"><span class="nav-number">3.2.</span> <span class="nav-text">源码</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -879,6 +575,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
