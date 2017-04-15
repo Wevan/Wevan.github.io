@@ -294,7 +294,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2017/03/01/写给自己的/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/写给自己的/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/01/写给自己的/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -409,7 +409,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2017/01/11/关于动态规划的一些经典例子/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/11/关于动态规划的一些经典例子/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/01/11/关于动态规划的一些经典例子/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -525,7 +525,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/12/16/有关递归的一些简单经典的算法问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/16/有关递归的一些简单经典的算法问题/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/16/有关递归的一些简单经典的算法问题/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -641,7 +641,7 @@ n!问题体现递归思想最简单的问题就是
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/12/12/LinkedList源码分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/12/LinkedList源码分析/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/12/LinkedList源码分析/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -756,7 +756,7 @@ n!问题体现递归思想最简单的问题就是
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/12/08/变态跳台阶/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/变态跳台阶/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/08/变态跳台阶/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -872,7 +872,7 @@ n!问题体现递归思想最简单的问题就是
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/11/17/解决tomcat中startup-bat一闪而过的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/解决tomcat中startup-bat一闪而过的问题/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/17/解决tomcat中startup-bat一闪而过的问题/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -987,7 +987,7 @@ n!问题体现递归思想最简单的问题就是
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/10/22/ccf俄罗斯方块解题文档/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/22/ccf俄罗斯方块解题文档/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/22/ccf俄罗斯方块解题文档/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1245,30 +1245,28 @@ n!问题体现递归思想最简单的问题就是
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wevan"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'islet';
+      var disqus_identifier = 'index.html';
+      var disqus_title = "";
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
 
 
 
