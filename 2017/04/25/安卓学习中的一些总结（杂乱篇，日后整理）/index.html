@@ -10,7 +10,7 @@
     
     <title>
         
-            categories | 
+            安卓学习中的一些总结（杂乱篇，日后整理） | 
         
         ISLET
     </title>
@@ -58,7 +58,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://wevan.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="categories | ISLET">
+    <meta property="og:title" content="安卓学习中的一些总结（杂乱篇，日后整理） | ISLET">
     <meta property="og:description" content="blingbling~">
     
 
@@ -223,6 +223,41 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#广播"><span class="post-toc-number">1.</span> <span class="post-toc-text">广播</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#广播机制"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">广播机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接受系统广播"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">接受系统广播</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#本地广播"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">本地广播</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通过广播来实现强制下线功能"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">通过广播来实现强制下线功能</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
 
 <!-- Layouts -->
 
@@ -249,7 +284,7 @@
         
     
             <p class="article-headline-p">
-                categories
+                安卓学习中的一些总结（杂乱篇，日后整理）
             </p>
         </div>
 
@@ -268,7 +303,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Wevan</strong>
-        <span>4月 20, 2016</span>
+        <span>4月 25, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -308,7 +343,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=categories&url=http://wevan.github.io//categories/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=安卓学习中的一些总结（杂乱篇，日后整理）&url=http://wevan.github.io//2017/04/25/安卓学习中的一些总结（杂乱篇，日后整理）/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -317,7 +352,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=categories&url=http://wevan.github.io//categories/index.html&via=Wevan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=安卓学习中的一些总结（杂乱篇，日后整理）&url=http://wevan.github.io//2017/04/25/安卓学习中的一些总结（杂乱篇，日后整理）/index.html&via=Wevan" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -326,7 +361,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wevan.github.io//categories/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wevan.github.io//2017/04/25/安卓学习中的一些总结（杂乱篇，日后整理）/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -335,7 +370,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://wevan.github.io//categories/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wevan.github.io//2017/04/25/安卓学习中的一些总结（杂乱篇，日后整理）/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -359,7 +394,17 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        
+        <h1 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h1><h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><ul>
+<li>标准广播与有序广播<br>  标准广播：完全异步执行的广播，发出后几乎所有的广播接收器在同一时刻接收到广播消息，无先后顺序可言，效率高，无法被截断<br>  有序广播：同步执行的广播，同一时刻只有一个广播接收器接受到，优先级高的先接收，有先后顺序，优先级高的广播接收器可截断之后的。通过在配置文件广播配置中的<intent-filter>中的priority参数来配置优先级，通过在onReceive()中使用abortBroadcast()来阻断广播的传播</intent-filter></li>
+</ul>
+<h2 id="接受系统广播"><a href="#接受系统广播" class="headerlink" title="接受系统广播"></a>接受系统广播</h2><ul>
+<li>动态注册<br>  创建一个类，让它继承自BroadcastReceiver，并重写父类的onReceive()方法，有广播到来的时候，onReceive()就会执行，但是动态注册的广播接收器一定要都在最后取消注册  </li>
+<li>静态注册 （使用AS直接创建一个广播接收器，不必自行配制）<br>  AndroidManifest.xml中 注册<br>  当使用AS创建的时候，Exported属性表示是否允许这个广播接收器接受本程序以外的广播，Enabled表示是否启用这个广播接收器</li>
+</ul>
+<h2 id="本地广播"><a href="#本地广播" class="headerlink" title="本地广播"></a>本地广播</h2><pre><code>全局广播容易存在安全隐患，为解决这个问题，引入了本地广播机制，使用这个机制的时候发出的广播只能在应用程序的内部进行传递，并且广播接收器也只能接受来自本应用程序的广播。主要是使用了一个LocalBroadcastManager来对广播进行管理  
+</code></pre> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.example.wean.restu;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.BroadcastReceiver;</div><div class="line"><span class="keyword">import</span> android.content.Context;</div><div class="line"><span class="keyword">import</span> android.content.Intent;</div><div class="line"><span class="keyword">import</span> android.content.IntentFilter;</div><div class="line"><span class="keyword">import</span> android.support.v4.content.LocalBroadcastManager;</div><div class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.widget.Button;</div><div class="line"><span class="keyword">import</span> android.widget.Toast;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> IntentFilter intentFilter;</div><div class="line">    <span class="keyword">private</span> LocalReceiver localReceiver;</div><div class="line">    <span class="keyword">private</span> LocalBroadcastManager localBroadcastManager;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="comment">//获取实例</span></div><div class="line">        localBroadcastManager=LocalBroadcastManager.getInstance(<span class="keyword">this</span>);</div><div class="line">        Button button= (Button) findViewById(R.id.button);</div><div class="line">        button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                Intent intent=<span class="keyword">new</span> Intent(<span class="string">"com.example.wean.restu.LOCAL_BROADCAST"</span>);</div><div class="line">                <span class="comment">//发送本地广播</span></div><div class="line">                localBroadcastManager.sendBroadcast(intent);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        intentFilter=<span class="keyword">new</span> IntentFilter();</div><div class="line">        intentFilter.addAction(<span class="string">"com.example.wean.restu.LOCAL_BROADCAST"</span>);</div><div class="line">        localReceiver=<span class="keyword">new</span> LocalReceiver();</div><div class="line">        <span class="comment">//注册本地广播监听器</span></div><div class="line">        localBroadcastManager.registerReceiver(localReceiver,intentFilter);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line">        localBroadcastManager.unregisterReceiver(localReceiver);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">LocalReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">            Toast.makeText(context, <span class="string">"received local broadcast"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过LocalBroadcastManager的getInstance方法获得一个实例，注册调用registerReceiver方法，发送调用sendBroadcast方法<br>本地广播是无法通过静态注册的方式来接收的，也没必要</p>
+<h2 id="通过广播来实现强制下线功能"><a href="#通过广播来实现强制下线功能" class="headerlink" title="通过广播来实现强制下线功能"></a>通过广播来实现强制下线功能</h2>
     
 
     
@@ -390,6 +435,14 @@
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/03/01/写给自己的/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -549,6 +602,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
