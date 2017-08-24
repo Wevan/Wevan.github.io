@@ -94,19 +94,16 @@
 
 
 
-<meta name="description" content="在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，jdk的主目录。  
-首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bi">
+<meta name="description" content="这一篇中我们要实现的就是简单实现微博的发布功能，在旧版本的微博官方API中，微博分开了各个接口，123456写入接口statuses/repost 转发一条微博信息statuses/destroy 删除微博信息statuses/update 发布一条微博信息statuses/upload 上传图片并发布一条微博statuses/upload_url_text 发布一条微博同时指定上传的图片或图片u">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决tomcat中startup.bat一闪而过的问题">
-<meta property="og:url" content="http://wevan.github.io/2016/11/17/解决tomcat中startup-bat一闪而过的问题/index.html">
+<meta property="og:title" content="Android微博发布功能">
+<meta property="og:url" content="http://wevan.github.io/2017/08/24/Android微博发布功能/index.html">
 <meta property="og:site_name" content="ISLET">
-<meta property="og:description" content="在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，jdk的主目录。  
-首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bi">
-<meta property="og:updated_time" content="2016-11-18T14:04:28.819Z">
+<meta property="og:description" content="这一篇中我们要实现的就是简单实现微博的发布功能，在旧版本的微博官方API中，微博分开了各个接口，123456写入接口statuses/repost 转发一条微博信息statuses/destroy 删除微博信息statuses/update 发布一条微博信息statuses/upload 上传图片并发布一条微博statuses/upload_url_text 发布一条微博同时指定上传的图片或图片u">
+<meta property="og:updated_time" content="2017-08-24T11:50:28.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决tomcat中startup.bat一闪而过的问题">
-<meta name="twitter:description" content="在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，jdk的主目录。  
-首先要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bi">
+<meta name="twitter:title" content="Android微博发布功能">
+<meta name="twitter:description" content="这一篇中我们要实现的就是简单实现微博的发布功能，在旧版本的微博官方API中，微博分开了各个接口，123456写入接口statuses/repost 转发一条微博信息statuses/destroy 删除微博信息statuses/update 发布一条微博信息statuses/upload 上传图片并发布一条微博statuses/upload_url_text 发布一条微博同时指定上传的图片或图片u">
 
 
 
@@ -135,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://wevan.github.io/2016/11/17/解决tomcat中startup-bat一闪而过的问题/"/>
+  <link rel="canonical" href="http://wevan.github.io/2017/08/24/Android微博发布功能/"/>
 
 
 
 
 
-  <title>解决tomcat中startup.bat一闪而过的问题 | ISLET</title>
+  <title>Android微博发布功能 | ISLET</title>
   
 
 
@@ -288,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wevan.github.io/2016/11/17/解决tomcat中startup-bat一闪而过的问题/">
+    <link itemprop="mainEntityOfPage" href="http://wevan.github.io/2017/08/24/Android微博发布功能/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wevan">
@@ -305,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">解决tomcat中startup.bat一闪而过的问题</h1>
+          <h1 class="post-title" itemprop="name headline">Android微博发布功能</h1>
         
 
         <div class="post-meta">
@@ -317,8 +314,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-17T21:38:28+08:00">
-                2016-11-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-24T10:08:47+08:00">
+                2017-08-24
               </time>
             
 
@@ -336,9 +333,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/11/17/解决tomcat中startup-bat一闪而过的问题/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/24/Android微博发布功能/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/11/17/解决tomcat中startup-bat一闪而过的问题/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/24/Android微博发布功能/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -346,7 +343,7 @@
 
           
           
-             <span id="/2016/11/17/解决tomcat中startup-bat一闪而过的问题/" class="leancloud_visitors" data-flag-title="解决tomcat中startup.bat一闪而过的问题">
+             <span id="/2017/08/24/Android微博发布功能/" class="leancloud_visitors" data-flag-title="Android微博发布功能">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -377,14 +374,19 @@
       
 
       
-        <p>在运行tomcat的startup.bat时常有遇到窗口一闪而过的问题，解决该问题的主要方法如下：<br>tomcat在启动时，会读取环境变量的信息，需要一个CATALINA_HOME 与JAVA_HOME的信息，CATALINA_HOME即tomcat的主目录，JAVA_HOME即Java安装的主目录，jdk的主目录。  </p>
-<h2 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h2><p>要在环境变量处，配置JAVA_HOME，注意变量值是jdk的主目录，不是bin目录，并且不要加分号<br>如果这样配置，startup.bat还是一闪而过，可以右键点击startup.bat，编辑，在文本的最后敲上PAUSE，保存后重新运行startup.bat，这时候窗口不会再一闪而过，而是停留在桌面上（调试成功，把pause去掉即可）。<br>这时候就可以根据框内内容找到错误信息所在了，下面是窗口提示的错误的解决方法：</p>
-<h2 id="1-Neither-the-JAVA-HOME-nor-the-JRE-HOME-environment-variable-is-defined"><a href="#1-Neither-the-JAVA-HOME-nor-the-JRE-HOME-environment-variable-is-defined" class="headerlink" title="1. Neither the JAVA_HOME nor the JRE_HOME environment variable is defined"></a>1. Neither the JAVA_HOME nor the JRE_HOME environment variable is defined</h2><p>Tomcat的startup.bat调用了catalina.bat,而catalina.bat则调用了setclasspath.bat，只要在setclasspath.bat的开头声明环境变量就可以了，原因是后来较新版本安装完不会自动登记环境变量JAVA_HOME，JRE_HOME。<br>给setclasspath.bat的开头添加标记部分，如下：<br>rem —————————————————————————<br>rem Set CLASSPATH and Java options<br>rem<br>rem $Id: setclasspath.bat 505241 2007-02-09 10:22:58Z jfclere $<br>rem —————————————————————————<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.6.0_20</div><div class="line">set JRE_HOME=C:\Program Files\Java\jre6</div></pre></td></tr></table></figure></p>
-<p>rem Make sure prerequisite environment variables are set<br>if not “%JAVA_HOME%” == “” goto gotJdkHome<br>if not “%JRE_HOME%” == “” goto gotJreHome<br>echo Neither the JAVA_HOME nor the JRE_HOME environment variable is defined<br>echo At least one of these environment variable is needed to run this program<br>goto exit</p>
-<p>这样在每次运行startup.bat时就自动注册了JAVA_HOME，JRE_HOME。<br>运行startup.bat，提示信息：Server startup in xxxxx ms”  完工</p>
-<h2 id="2-Cannot-find-“”d-apache-tomcat-6-0-32”-bin-setclasspath-bat”"><a href="#2-Cannot-find-“”d-apache-tomcat-6-0-32”-bin-setclasspath-bat”" class="headerlink" title="2.Cannot find “”d:\apache-tomcat-6.0.32”\bin\setclasspath.bat”"></a>2.Cannot find “”d:\apache-tomcat-6.0.32”\bin\setclasspath.bat”</h2><p>这个时候，可能是CATALINA_HOME的值在某个地方被写死了，某些绿色版tomcat在bin文件下多了一个setenv.bat的文件，打开一看果然是在这里面被写死了CATALINA_HOME的路径，这应该是为了某种原因被人后加上的设置文件，把这个文件删除之后，tomcat可以正常运行了。<br>这种情况，可以去看catalina.bat中的配置，可能配置死的内容就在这个文件里。  </p>
-<h2 id="server-xml配置有错误"><a href="#server-xml配置有错误" class="headerlink" title="server.xml配置有错误"></a>server.xml配置有错误</h2><p>当用startup.bat启动tomcat时，如果server.xml配置有错误，那么startup.bat将闪一下就消失了，如果想让命令窗口停住，好方便查看错误信息，则用如下方法修改：修改catalina.bat，找到里面的:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">：doStart</div><div class="line">shift</div><div class="line"><span class="keyword">if</span> not <span class="string">"%OS%"</span> == <span class="string">"Windows_NT"</span> goto noTitle</div><div class="line">set _EXECJAVA=start %_RUNJAVA%</div><div class="line">goto gotTitle</div><div class="line">:noTitle</div><div class="line">set _EXECJAVA=start %_RUNJAVA%</div><div class="line">:gotTitle</div><div class="line"><span class="keyword">if</span> not <span class="string">""</span>%<span class="number">1</span><span class="string">""</span> == <span class="string">""</span>-security<span class="string">""</span> goto execCmd</div><div class="line">shift</div><div class="line">echo Using Security Manager</div><div class="line">set SECURITY_POLICY_FILE=%CATALINA_BASE%\conf\catalina.policy</div><div class="line">goto execCmd</div></pre></td></tr></table></figure></p>
-<p>将上面set _EXECJAVA=start %_RUNJAVA% 中的start去掉，就可以让命令行出错后不消失。set _EXECJAVA=start %_RUNJAVA% 的意思是重新启动一个命令行窗口。去掉start后，则不会再重新启动窗口，就达到了使命令行停住的效果。要在命令行中启动startup.bat才能看到效果。</p>
+        <p>这一篇中我们要实现的就是简单实现微博的发布功能，在旧版本的微博官方API中，微博分开了各个接口，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">写入接口</div><div class="line">statuses/repost 转发一条微博信息</div><div class="line">statuses/destroy 删除微博信息</div><div class="line">statuses/update 发布一条微博信息</div><div class="line">statuses/upload 上传图片并发布一条微博</div><div class="line">statuses/upload_url_text 发布一条微博同时指定上传的图片或图片url</div></pre></td></tr></table></figure></p>
+<p>而新版API只留了一个写入接口给我们<br><a href="https://api.weibo.com/2/statuses/share.json" target="_blank" rel="external"></a><br>请求方式POST，请求参数token和Statues，token就不说了，关键是这里的Statues要求，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">用户分享到微博的文本内容，必须做URLencode，内容不超过140个汉字，文本中不能包含“#话题词#”，同时文本中必须包含至少一个第三方分享到微博的网页URL，且该URL只能是该第三方（调用方）绑定域下的URL链接，绑定域在“我的应用 － 应用信息 － 基本应用信息编辑 － 安全域名”里设置。</div></pre></td></tr></table></figure></p>
+<p>这时候首先我们要去完善这个安全域名的信息。通过它上边的提示，我们可以找到这个编辑安全域名的地方，但是我们并不能只填写安全域名，微博还要求我们把其他几项信息补全，否则我们不能保存该项信息   </p>
+<ul>
+<li>这里需要下载微博的签名工具，包名信息我们可以在AndroidManifest文件中的第一项manifest标签中找到，然后将这个包名复制到手机上下载好的签名工具上，生成签名。  </li>
+<li>Android下载地址：随便填写一个应用商店的地址即可，这里我填的是百度应用商店的地址。应用下载地址亦同。  </li>
+<li>应用介绍、简介也都需要填，可以随便写写。  选好标签。  </li>
+<li>接下来就是安全域名，这里我填写了依旧是百度的首页。安全域名填三级域名即可。<br>这里发布微博界面我们以Activity为基础写，是因为我想的有点多23333，微博发布界面那个Fragment会有好几个选项，点击了相应的会跳转到不同的Activity，所以我们这里采用了Activity。废话不多说，来看。<br>首先我们分析，我们需要一个EditText输入文本和记录表情码，表情软键盘，一个Button，然后就是简单的处理发送了。<br>这里表情软键盘我使用了第三方库，这是比较过以后最好用的一个第三方库，首先我们还是要添加依赖  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.tb.emoji:yykEmoji:1.0.0&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="https://segmentfault.com/a/1190000003850908" target="_blank" rel="external">库主的专栏</a>  ，<br>然后让你的Activity实现(Fragment中set接口)FaceFragment.OnEmojiClickListener来处理emoji的点击事件，用法只需要<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">FaceFragment faceFragment = FaceFragment.Instance();</div><div class="line">getSupportFragmentManager().beginTransaction().add(R.id.Container,faceFragment).commit();</div></pre></td></tr></table></figure></p>
+<p>这里的Container只是一个显示最后带表情的微博文本结果的TextView。<br>在点击发布时候，onClick方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (v.getId())&#123;</div><div class="line">            <span class="keyword">case</span> R.id.send:</div><div class="line">                OkHttpClient client=<span class="keyword">new</span> OkHttpClient();</div><div class="line">                Intent intent=getIntent();</div><div class="line">                String access_token = getIntent().getStringExtra(<span class="string">"access_token"</span>);</div><div class="line">                <span class="comment">//这里有个坑，就是添加安全域的时候前边一定要加个空格，否则会报错</span></div><div class="line">                urlString=editText.getText().toString()+<span class="string">" https://www.baidu.com"</span>;</div><div class="line">                urlString = URLEncoder.encode(urlString, <span class="string">"GBK"</span>);</div><div class="line"></div><div class="line">                FormBody formBody=<span class="keyword">new</span> FormBody.Builder().add(<span class="string">"access_token"</span>,access_token)</div><div class="line">                        .add(<span class="string">"status"</span>,urlString)</div><div class="line">                        .build();</div><div class="line">                Request request = <span class="keyword">new</span> Request.Builder().url(<span class="string">"https://api.weibo.com/2/statuses/share.json"</span>).post(formBody).build();</div><div class="line">                Call call = client.newCall(request);</div><div class="line">                call.enqueue(<span class="keyword">new</span> Callback() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call call, IOException e)</span> </span>&#123;</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call call, Response response)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">                        String responseData = response.body().string();</div><div class="line">                        System.out.println(<span class="string">"发布的返回"</span>+responseData);</div><div class="line">                        Gson gson = <span class="keyword">new</span> Gson();</div><div class="line">                        Newone newone=<span class="keyword">new</span> Newone();</div><div class="line">                        newone=gson.fromJson(responseData,Newone.class);</div><div class="line"></div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>嗯，其他什么界面的流程，我做的都很糙，还显示了用户信息那个界面，和之前的操作一样，获取和解析数据，这里每个返回的json都会对应一个类，所以都要使用工具生成实体类，我首先做的是微博解析的原因就是因为，微博返回的json几乎涵盖了所有的类，更方便以后的数据处理，在这里还需要注意的几个坑就是，有的地方工具会给你生成int类型的值，但是int根本不够存放那个值的长度，所以需要你在碰到这类问题时候需要自己手动修改为long。<br>还有一个在设置赞转发评论数的时候遇到的问题，报错显示Android.content.res.Resources$NotFoundException: String resource ID #0x1，<br>原因：一般发生在参数 int resId 错误，你把String赋值给int的resId，所以编译器找不到正确的resource于是报错。<br>最简单的例子，检查一下你的Toast.makeText()啊textView.setText啊之类的函数，这种函数通常有几个重载，如：<br>textView.setText(CharSequence text);<br>textView.setText(int resId);<br>……<br>如果不小心将一个int值传给了它，那它不会显示该int值，而是跑到工程下去找一个对应的resource的id,当然是找不到的，于是就报错啦。<br>好了，这篇就是如此短小了，如果对您有用欢迎评论支持，谢谢阅读！<br><a href="https://github.com/Wevan/Weebo" target="_blank" rel="external">项目地址</a></p>
 
       
     </div>
@@ -405,7 +407,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://wevan.github.io/2016/11/17/解决tomcat中startup-bat一闪而过的问题/" title="解决tomcat中startup.bat一闪而过的问题">http://wevan.github.io/2016/11/17/解决tomcat中startup-bat一闪而过的问题/</a>
+    <a href="http://wevan.github.io/2017/08/24/Android微博发布功能/" title="Android微博发布功能">http://wevan.github.io/2017/08/24/Android微博发布功能/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -427,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/22/ccf俄罗斯方块解题文档/" rel="next" title="ccf俄罗斯方块解题文档">
-                <i class="fa fa-chevron-left"></i> ccf俄罗斯方块解题文档
+              <a href="/2017/08/21/Android微博内容显示（正则表达式处理文本）/" rel="next" title="Android微博内容显示（正则表达式处理文本）">
+                <i class="fa fa-chevron-left"></i> Android微博内容显示（正则表达式处理文本）
               </a>
             
           </div>
@@ -436,10 +438,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/08/变态跳台阶/" rel="prev" title="变态跳台阶">
-                变态跳台阶 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -498,17 +496,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://obhl5boin.bkt.clouddn.com/avtar.png"
@@ -580,22 +569,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先"><span class="nav-number">1.</span> <span class="nav-text">首先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Neither-the-JAVA-HOME-nor-the-JRE-HOME-environment-variable-is-defined"><span class="nav-number">2.</span> <span class="nav-text">1. Neither the JAVA_HOME nor the JRE_HOME environment variable is defined</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Cannot-find-“”d-apache-tomcat-6-0-32”-bin-setclasspath-bat”"><span class="nav-number">3.</span> <span class="nav-text">2.Cannot find “”d:\apache-tomcat-6.0.32”\bin\setclasspath.bat”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server-xml配置有错误"><span class="nav-number">4.</span> <span class="nav-text">server.xml配置有错误</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -743,9 +716,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://wevan.github.io/2016/11/17/解决tomcat中startup-bat一闪而过的问题/';
-          this.page.identifier = '2016/11/17/解决tomcat中startup-bat一闪而过的问题/';
-          this.page.title = '解决tomcat中startup.bat一闪而过的问题';
+          this.page.url = 'http://wevan.github.io/2017/08/24/Android微博发布功能/';
+          this.page.identifier = '2017/08/24/Android微博发布功能/';
+          this.page.title = 'Android微博发布功能';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://islet.disqus.com/embed.js';
