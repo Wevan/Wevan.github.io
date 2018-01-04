@@ -106,7 +106,7 @@
 生产者消费者问题本质生产者消费者问题本质就是两堆线程对同一个缓冲区进行互斥操">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/1.jpg">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/%E6%97%A0%E6%A0%87%E9%A2%98.png">
-<meta property="og:updated_time" content="2018-01-04T14:22:13.061Z">
+<meta property="og:updated_time" content="2018-01-04T14:24:01.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Linux的线程和进程控制">
 <meta name="twitter:description" content="太久没有写过博客了，还是要坚持下去最近做过的一个基于Linux的线程控制程序。主要解决了生产者消费者问题和读者写着问题 
@@ -217,7 +217,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -227,7 +227,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -247,7 +247,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -321,7 +321,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-03T21:52:56+08:00">
                 2018-01-03
@@ -399,7 +399,7 @@
 </ul>
 <p>而对于读者，由于这里是写者优先，且读写互斥，所以读者在执行操作之前，先要判断读锁是否已经被锁上，若已经被写者锁上，读者将会进入阻塞，直到写者释放读锁，读者在对读锁进行加锁。同理如果是第一个读者，就对写锁进行加锁，但是每个读者读完都会释放读锁，如果此时写者请求了锁定读锁，那么这个锁会被写者先锁上。但同样你得等他当前在读的读完。  </p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">myreader</span><span class="params">(<span class="keyword">void</span> *arg)</span> </span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"编号为%d的读者进入等待中。。。\n"</span>, pthread_self());</div><div class="line">    pthread_mutex_lock(&amp;read_mutex);</div><div class="line">    sem_wait(&amp;sem_read);</div><div class="line">    readerCnt++;</div><div class="line">    <span class="keyword">if</span> (readerCnt == <span class="number">1</span>) &#123;</div><div class="line">        pthread_mutex_lock(&amp;write_mutex);</div><div class="line">    &#125;</div><div class="line">    sem_post(&amp;sem_read);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"编号为%d的读者开始读\n"</span>, pthread_self());</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"编号为%d的读者读完\n"</span>, pthread_self());</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"---------------------\n"</span>);</div><div class="line">    pthread_mutex_unlock(&amp;read_mutex);</div><div class="line">    sem_wait(&amp;sem_read);</div><div class="line">    readerCnt--;</div><div class="line">    <span class="keyword">if</span> (readerCnt==<span class="number">0</span>)&#123;</div><div class="line">        pthread_mutex_unlock(&amp;write_mutex);</div><div class="line">    &#125;</div><div class="line">    sem_post(&amp;sem_read);</div><div class="line">    sleep(R_SLEEP);</div><div class="line">    pthread_exit((<span class="keyword">void</span> *) <span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">//写者优先执行函数</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">writerFirst</span><span class="params">()</span> </span>&#123;</div><div class="line">    readerCnt=<span class="number">0</span>;</div><div class="line">    writerCnt=<span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"多线程,写者优先\n"</span>);</div><div class="line">    pthread_mutex_init(&amp;write_mutex, <span class="literal">NULL</span>);</div><div class="line">    pthread_mutex_init(&amp;read_mutex, <span class="literal">NULL</span>);</div><div class="line">    sem_init(&amp;sem_write, <span class="number">0</span>, <span class="number">1</span>);</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N_READER; i++) &#123;</div><div class="line">        pthread_create(&amp;rid[i], <span class="literal">NULL</span>, myreader, <span class="literal">NULL</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N_WRITER; i++) &#123;</div><div class="line">        pthread_create(&amp;wid[i], <span class="literal">NULL</span>, mywriter, <span class="literal">NULL</span>);</div><div class="line">    &#125;</div><div class="line">    sleep(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>完整代码见(GitHub)[]</p>
+<p>完整代码见(GitHub)[<a href="https://github.com/Wevan/untitled3" target="_blank" rel="external">https://github.com/Wevan/untitled3</a>]</p>
 
       
     </div>
@@ -511,10 +511,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -535,7 +535,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -548,7 +548,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -635,7 +635,7 @@
 
 
   <div class="powered-by">
-    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>
