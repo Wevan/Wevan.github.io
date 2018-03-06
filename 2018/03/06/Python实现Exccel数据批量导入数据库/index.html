@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="准备
+Python3  
+import xlrd  
+from xlwt import *  
+import pymysql  用Python创建Excel模板使用Py创建一个表头固定的Excel：  12345678def createExcel():    w = Workbook(encoding=&apos;utf-8&apos;)    sheet1 = w.add_sheet(&apos;problem_sheet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python实现Exccel数据批量导入数据库">
+<meta property="og:url" content="http://wevan.github.io/2018/03/06/Python实现Exccel数据批量导入数据库/index.html">
+<meta property="og:site_name" content="ISLET">
+<meta property="og:description" content="准备
+Python3  
+import xlrd  
+from xlwt import *  
+import pymysql  用Python创建Excel模板使用Py创建一个表头固定的Excel：  12345678def createExcel():    w = Workbook(encoding=&apos;utf-8&apos;)    sheet1 = w.add_sheet(&apos;problem_sheet">
+<meta property="og:updated_time" content="2018-03-06T01:43:40.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python实现Exccel数据批量导入数据库">
+<meta name="twitter:description" content="准备
+Python3  
+import xlrd  
+from xlwt import *  
+import pymysql  用Python创建Excel模板使用Py创建一个表头固定的Excel：  12345678def createExcel():    w = Workbook(encoding=&apos;utf-8&apos;)    sheet1 = w.add_sheet(&apos;problem_sheet">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wevan.github.io/2018/03/06/Python实现Exccel数据批量导入数据库/"/>
+
+
+
+
+
+  <title>Python实现Exccel数据批量导入数据库 | ISLET</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?57fcd6fbcb65fb296d034ff4a1e50a6f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ISLET</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">blank，black</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wevan.github.io/2018/03/06/Python实现Exccel数据批量导入数据库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wevan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://obhl5boin.bkt.clouddn.com/avtar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ISLET">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python实现Exccel数据批量导入数据库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T08:52:01+08:00">
+                2018-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/06/Python实现Exccel数据批量导入数据库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/06/Python实现Exccel数据批量导入数据库/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/06/Python实现Exccel数据批量导入数据库/" class="leancloud_visitors" data-flag-title="Python实现Exccel数据批量导入数据库">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
+<li>Python3  </li>
+<li>import xlrd  </li>
+<li>from xlwt import *  </li>
+<li>import pymysql  <h1 id="用Python创建Excel模板"><a href="#用Python创建Excel模板" class="headerlink" title="用Python创建Excel模板"></a>用Python创建Excel模板</h1>使用Py创建一个表头固定的Excel：  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createExcel</span><span class="params">()</span>:</span></div><div class="line">    w = Workbook(encoding=<span class="string">'utf-8'</span>)</div><div class="line">    sheet1 = w.add_sheet(<span class="string">'problem_sheet'</span>)</div><div class="line">    row0 = [<span class="string">u'num'</span>, <span class="string">u'title'</span>, <span class="string">u'category'</span>, <span class="string">u'difficulty'</span>, <span class="string">u'answer'</span>, <span class="string">u'analysis'</span>, <span class="string">u'teacher'</span>, <span class="string">u'add_time'</span>, <span class="string">u'score'</span>, <span class="string">u'complete_time'</span>, <span class="string">u'status'</span>, <span class="string">u'direction_id'</span>, <span class="string">u'stage_id'</span>, <span class="string">u'course_id'</span>, <span class="string">u'days_id'</span>, <span class="string">u'gongsi_id'</span>, <span class="string">u'zhiwei_id'</span>, <span class="string">u'type'</span>, <span class="string">u'url'</span>, <span class="string">u'orderd'</span>]</div><div class="line">    <span class="comment"># 生成第一行</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(row0)):</div><div class="line">        sheet1.write(<span class="number">0</span>, i, row0[i])</div><div class="line">    w.save(<span class="string">'Problems.xls'</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意一定要设置好编码，然后再去创建子sheet。可以创建多个sheet。创建表头即生成第一行，操作见上。<br>默认的存储路径在与程序同级目录下。  关于Py操作Excel的还有很多，此处不再叙述；</p>
+<h1 id="Python操作Mysql写入数据"><a href="#Python操作Mysql写入数据" class="headerlink" title="Python操作Mysql写入数据"></a>Python操作Mysql写入数据</h1><h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sonmenu</span><span class="params">()</span>:</span></div><div class="line">    dbname = input(<span class="string">"请输入已创建的数据库的名称：\n"</span>)</div><div class="line">    dbuser = input(<span class="string">"请输入mysql用户名：\n"</span>)</div><div class="line">    dbpwd = input(<span class="string">"请输入mysql密码：\n"</span>)</div><div class="line">    <span class="keyword">global</span> db</div><div class="line">    db = pymysql.connect(<span class="string">"localhost"</span>, dbuser, dbpwd, dbname, use_unicode=<span class="keyword">True</span>, charset=<span class="string">"utf8"</span>)</div></pre></td></tr></table></figure>
+<p>注意charset的设置，存在创建的数据库和表编码格式很可能是只支持英文的Latin，会导致含中文的数据写入失败，同样字符编码格式不一致也会导致写入失败<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertData</span><span class="params">()</span>:</span></div><div class="line">    ename = input(<span class="string">"请输入要导入的Excel文件名称：\n"</span>)</div><div class="line">    workbook = xlrd.open_workbook(ename)</div><div class="line">    print(<span class="string">"导入全部sheet...\n"</span>)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> workbook.sheet_names():</div><div class="line">        print(<span class="string">"表名====&gt;&gt;"</span> + i + <span class="string">"/"</span>)</div><div class="line">    print(<span class="string">"\n"</span>)</div><div class="line">    a = len(workbook.sheets())</div><div class="line">    cursor = db.cursor()</div></pre></td></tr></table></figure></p>
+<p>导入excel全部sheet，并获取数据库游标。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, a):</div><div class="line">    sheet1 = workbook.sheet_by_index(j)</div><div class="line">    print(<span class="string">"打开了表"</span> + sheet1.name + <span class="string">"\n"</span>)</div><div class="line">    title = <span class="string">""</span></div><div class="line">    <span class="comment"># 获取表头</span></div><div class="line">    <span class="keyword">for</span> l <span class="keyword">in</span> range(<span class="number">0</span>, int(sheet1.ncols)):</div><div class="line">        <span class="keyword">if</span> l == sheet1.ncols - <span class="number">1</span>:</div><div class="line">            title += sheet1.cell_value(<span class="number">0</span>, l)</div><div class="line">            <span class="keyword">break</span></div><div class="line">        title += sheet1.cell_value(<span class="number">0</span>, l) + <span class="string">","</span></div><div class="line">    print(<span class="string">"表头是"</span>+title)</div></pre></td></tr></table></figure></p>
+<p>遍历sheetlist，打开一个sheet并获取它的表头（此处创建的模板表头与数据库中的字段相同），表名与数据库表名相同，方便导入。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 遍历sheet的多行</span></div><div class="line">        <span class="keyword">for</span> nrows_one <span class="keyword">in</span> range(<span class="number">1</span>, int(sheet1.nrows)):</div><div class="line">        <span class="comment">#con用于存放sql语句中的value值</span></div><div class="line">            con = <span class="string">""</span></div><div class="line">            <span class="comment">#遍历一行中的单元格</span></div><div class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> range(<span class="number">0</span>, int(sheet1.ncols)):</div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    values = sheet1.cell_value(nrows_one, s)</div><div class="line">                    <span class="keyword">if</span> sheet1.cell_value(<span class="number">0</span>, s) == <span class="string">"score"</span> <span class="keyword">or</span> sheet1.cell_value(<span class="number">0</span>, s) == <span class="string">"complete_time"</span>:</div><div class="line">                        <span class="keyword">try</span>:</div><div class="line">                        <span class="comment">#这里要注意Excel中的数值型是不能直接被拼接的，一定要转换为str</span></div><div class="line">                            con = con + str(int(values)) + <span class="string">","</span></div><div class="line">                        <span class="keyword">except</span>:</div><div class="line">                            con = con + str(<span class="number">1</span>)+<span class="string">","</span></div><div class="line">                        <span class="keyword">continue</span></div><div class="line">                        <span class="comment">#此处orderd为最后一个字段，拼接不加逗号</span></div><div class="line">                    <span class="keyword">elif</span> sheet1.cell_value(<span class="number">0</span>, s) == <span class="string">"orderd"</span>:</div><div class="line">                        <span class="keyword">try</span>:</div><div class="line">                            con = con + str(int(values))</div><div class="line">                        <span class="keyword">except</span>:</div><div class="line">                            con = con + str(<span class="number">0</span>)</div><div class="line">                        <span class="keyword">continue</span></div><div class="line">                        <span class="comment">#表中字段为ENUM型时一定要给值加上单引号</span></div><div class="line">                    <span class="keyword">elif</span> sheet1.cell_value(<span class="number">0</span>, s) == <span class="string">"category"</span><span class="keyword">or</span> sheet1.cell_value(<span class="number">0</span>, s) == <span class="string">"difficulty"</span><span class="keyword">or</span> sheet1.cell_value(<span class="number">0</span>, s) == <span class="string">"status"</span><span class="keyword">or</span> sheet1.cell_value(<span class="number">0</span>, s) == <span class="string">"type"</span>:</div><div class="line">                        <span class="keyword">try</span>:</div><div class="line">                            con = con + <span class="string">"'"</span>+str(int(values))+<span class="string">"'"</span>+<span class="string">","</span></div><div class="line">                        <span class="keyword">except</span>:</div><div class="line">                            con = con + <span class="string">"'"</span>+ str(<span class="number">0</span>)+<span class="string">"'"</span>+<span class="string">","</span></div><div class="line">                        <span class="keyword">continue</span></div><div class="line">                    <span class="comment">#此处transferContent做了一次字符串的处理，以正确保留单引号，双引号，反斜杠等</span></div><div class="line">                    values = transferContent(str(values))</div><div class="line">                    <span class="keyword">if</span> s == int(sheet1.ncols) - <span class="number">1</span>:</div><div class="line">                        con = con + <span class="string">"'"</span> + str(values) + <span class="string">"'"</span></div><div class="line">                        <span class="keyword">break</span></div><div class="line">                    con = con + <span class="string">"'"</span> + str(values) + <span class="string">"',"</span></div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    print(<span class="string">"出问题的是"</span> + str(s) + <span class="string">","</span> + str(values))</div><div class="line">            <span class="comment">#拼接sql语句</span></div><div class="line">            sql = <span class="string">"insert into"</span>+ sheet1.name<span class="string">"("</span> + title + <span class="string">") values("</span> + con + <span class="string">")"</span></div><div class="line">            </div><div class="line">            <span class="comment"># 将数据存入数据库</span></div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                <span class="comment"># 使用 cursor() 方法创建一个游标对象 cursor</span></div><div class="line">                cursor.execute(sql)</div><div class="line">                db.commit()  <span class="comment"># 事务提交</span></div><div class="line">                print(str(nrows_one) + <span class="string">'行存入成功'</span>)</div><div class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">                <span class="comment"># 发生错误时回滚</span></div><div class="line">                db.rollback()</div><div class="line">                print(str(nrows_one) + <span class="string">"行错了"</span>)</div><div class="line">                print(str(e))</div><div class="line"></div><div class="line">    <span class="comment"># 关闭数据库连接</span></div><div class="line">    db.close()</div></pre></td></tr></table></figure></p>
+<h1 id="Python打包为exe"><a href="#Python打包为exe" class="headerlink" title="Python打包为exe"></a>Python打包为exe</h1><p>此处采用pyinstaller，<strong>pip install pyinstaller</strong>，解压以后安装pyinstaller，进入解压包目录，<strong>python setup.py install</strong>，将你的py程序复制到解压包目录下，<strong>pyinstaller -F 文件名.py</strong> ，跑完以后将生成两个文件夹，在dist目录下就是生成的exe文件<br>完整源码地址：<a href="">Github</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Wevan
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wevan.github.io/2018/03/06/Python实现Exccel数据批量导入数据库/" title="Python实现Exccel数据批量导入数据库">http://wevan.github.io/2018/03/06/Python实现Exccel数据批量导入数据库/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/05/Python爬虫爬取基础网页信息/" rel="next" title="Python爬虫爬取基础网页信息">
+                <i class="fa fa-chevron-left"></i> Python爬虫爬取基础网页信息
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obhl5boin.bkt.clouddn.com/avtar.png"
+               alt="Wevan" />
+          <p class="site-author-name" itemprop="name">Wevan</p>
+           
+              <p class="site-description motion-element" itemprop="description">blingbling~</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wevan" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用Python创建Excel模板"><span class="nav-number">2.</span> <span class="nav-text">用Python创建Excel模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python操作Mysql写入数据"><span class="nav-number">3.</span> <span class="nav-text">Python操作Mysql写入数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#连接数据库"><span class="nav-number">3.1.</span> <span class="nav-text">连接数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python打包为exe"><span class="nav-number">4.</span> <span class="nav-text">Python打包为exe</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wevan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://islet.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://wevan.github.io/2018/03/06/Python实现Exccel数据批量导入数据库/';
+          this.page.identifier = '2018/03/06/Python实现Exccel数据批量导入数据库/';
+          this.page.title = 'Python实现Exccel数据批量导入数据库';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://islet.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("JA27xsMi9lrA6z9imd0pGsSD-gzGzoHsz", "DRrv1wL2T7c5v4PkDSpmwmoA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
