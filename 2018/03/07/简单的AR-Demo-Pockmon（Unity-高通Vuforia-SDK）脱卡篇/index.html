@@ -94,35 +94,33 @@
 
 
 
-<meta name="description" content="准备工作——SDK的下载与使用我们使用Unity开发，那么首先，我们需要去Viforia官网上下载Unity的SDK。前提是你有注册过了账号才可以下载。Download-&amp;gt;Download for Unity直接将下载好的sdk拖入Unity中，Import导入。期间可能会因为一些内部文件的版本更迭问题弹出框，API Update Required，选择Go ahead即可，导入成功后可以看">
+<meta name="description" content="在上一篇中我们探究了有卡的AR，在本文中我们将做脱卡模式的AR。  
+新建场景新建一个场景Scene2，加入AR摄像机，添加licensekey。与之前操作相同。  
+加入素材素材链接与之前相同，下载完成后导入。然后我们选择带有动画效果的那个此时运行摄像机时候我们并不能看到喷火龙的模型。我们需要移动摄像机的位置以及喷火龙的位置此时我们可以看到素材在屏幕中间了。  
+添加动画效果我们需要将动画效果拖">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）有卡篇">
-<meta property="og:url" content="http://wevan.github.io/2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/index.html">
+<meta property="og:title" content="简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）脱卡篇">
+<meta property="og:url" content="http://wevan.github.io/2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/index.html">
 <meta property="og:site_name" content="ISLET">
-<meta property="og:description" content="准备工作——SDK的下载与使用我们使用Unity开发，那么首先，我们需要去Viforia官网上下载Unity的SDK。前提是你有注册过了账号才可以下载。Download-&amp;gt;Download for Unity直接将下载好的sdk拖入Unity中，Import导入。期间可能会因为一些内部文件的版本更迭问题弹出框，API Update Required，选择Go ahead即可，导入成功后可以看">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/14-1.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-05-04.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-11-57.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-16-07.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-26-04.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-27-13.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-30-03.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-38-35.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-46-47.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-50-51.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-53-56.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-55-09.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-01-39.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-04-21.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-13-09.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-10-20.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-16-06.png">
-<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-16-06.png">
-<meta property="og:updated_time" content="2018-03-06T13:20:41.992Z">
+<meta property="og:description" content="在上一篇中我们探究了有卡的AR，在本文中我们将做脱卡模式的AR。  
+新建场景新建一个场景Scene2，加入AR摄像机，添加licensekey。与之前操作相同。  
+加入素材素材链接与之前相同，下载完成后导入。然后我们选择带有动画效果的那个此时运行摄像机时候我们并不能看到喷火龙的模型。我们需要移动摄像机的位置以及喷火龙的位置此时我们可以看到素材在屏幕中间了。  
+添加动画效果我们需要将动画效果拖">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-48-56.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-55-03.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-56-16.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-58-25.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_11-04-52.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_11-06-12.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_11-06-12.png">
+<meta property="og:updated_time" content="2018-03-07T03:24:46.007Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）有卡篇">
-<meta name="twitter:description" content="准备工作——SDK的下载与使用我们使用Unity开发，那么首先，我们需要去Viforia官网上下载Unity的SDK。前提是你有注册过了账号才可以下载。Download-&amp;gt;Download for Unity直接将下载好的sdk拖入Unity中，Import导入。期间可能会因为一些内部文件的版本更迭问题弹出框，API Update Required，选择Go ahead即可，导入成功后可以看">
-<meta name="twitter:image" content="http://obhl5boin.bkt.clouddn.com/14-1.png">
+<meta name="twitter:title" content="简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）脱卡篇">
+<meta name="twitter:description" content="在上一篇中我们探究了有卡的AR，在本文中我们将做脱卡模式的AR。  
+新建场景新建一个场景Scene2，加入AR摄像机，添加licensekey。与之前操作相同。  
+加入素材素材链接与之前相同，下载完成后导入。然后我们选择带有动画效果的那个此时运行摄像机时候我们并不能看到喷火龙的模型。我们需要移动摄像机的位置以及喷火龙的位置此时我们可以看到素材在屏幕中间了。  
+添加动画效果我们需要将动画效果拖">
+<meta name="twitter:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-48-56.png">
 
 
 
@@ -151,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://wevan.github.io/2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/"/>
+  <link rel="canonical" href="http://wevan.github.io/2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/"/>
 
 
 
 
 
-  <title>简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）有卡篇 | ISLET</title>
+  <title>简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）脱卡篇 | ISLET</title>
   
 
 
@@ -304,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wevan.github.io/2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/">
+    <link itemprop="mainEntityOfPage" href="http://wevan.github.io/2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wevan">
@@ -321,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）有卡篇</h1>
+          <h1 class="post-title" itemprop="name headline">简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）脱卡篇</h1>
         
 
         <div class="post-meta">
@@ -333,8 +331,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T15:18:29+08:00">
-                2018-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T10:14:56+08:00">
+                2018-03-07
               </time>
             
 
@@ -352,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,7 +360,7 @@
 
           
           
-             <span id="/2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/" class="leancloud_visitors" data-flag-title="简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）有卡篇">
+             <span id="/2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/" class="leancloud_visitors" data-flag-title="简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）脱卡篇">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -393,13 +391,43 @@
       
 
       
-        <h2 id="准备工作——SDK的下载与使用"><a href="#准备工作——SDK的下载与使用" class="headerlink" title="准备工作——SDK的下载与使用"></a>准备工作——SDK的下载与使用</h2><p>我们使用Unity开发，那么首先，我们需要去<a href="https://developer.vuforia.com/" target="_blank" rel="external">Viforia官网</a>上下载Unity的SDK。<br><img src="http://obhl5boin.bkt.clouddn.com/14-1.png" alt=""><br>前提是你有注册过了账号才可以下载。<br><strong>Download-&gt;Download for Unity</strong><br>直接将下载好的sdk拖入Unity中，Import导入。期间可能会因为一些内部文件的版本更迭问题弹出框，<strong>API Update Required</strong>，选择<strong>Go ahead</strong>即可，导入成功后可以看到在Asserts下看到高通Vuforia文件夹，并且菜单栏也有了一个Vuforia的选项卡 </p>
-<h2 id="创建场景"><a href="#创建场景" class="headerlink" title="创建场景"></a>创建场景</h2><p>Asserts下新建文件夹Scene用于存放之后所有的场景<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-05-04.png" alt=""><br>File-&gt;Save Scene as-&gt;切换到刚刚创建的Scene目录下，存为Scene1，Scene中多了一个Scene1。<br>在普通3d游戏中，就如同电影录制一样，有一个摄像机和默认光源。<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-11-57.png" alt=""><br>但是我们开发AR应用，就需要使用AR的摄像机，不能用Main Camera，否则拍出来的就不是AR。<br>此刻在Scene1中我们就要将Main Camera删除，在Asserts中刚导入的Vuforia文件夹下搜索ARCamera<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-16-07.png" alt=""><br>将它拖拽到左侧的Hierarchy中。<br>那么接下来在我们能够使用Vuforia的功能时，我们需要去它的官网去生成一个Vuforia的证书密钥，即license key。<br>依旧进入官网开发者门户下，Develop-&gt;License Manager-&gt;Add<br>我们只需要选择Development即可，其他两项将收费。填写Appname，next，confirm。然后进入刚刚创建的License中即可查看license key。<br>接下来我们就要将这个license key绑定在ARCamera上。回到Unity，点击ARCamera，在编辑器右侧Inspector处可以看到<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-26-04.png" alt=""><br>在此处填入Appkey即可<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-27-13.png" alt="">  </p>
-<h2 id="上传识别卡到Vuforia官网"><a href="#上传识别卡到Vuforia官网" class="headerlink" title="上传识别卡到Vuforia官网"></a>上传识别卡到Vuforia官网</h2><p>有卡AR即我们需要一张显示卡才能显示出相应的AR对象。<br>依旧进入Vuforia官网，<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-30-03.png" alt=""><br>Add一个，填好名字，type我们选择Device，因为我们最后要将游戏导出到手机设备上。完成后Create。<br>然后依旧点进去刚刚创建的database，我们需要添加识别卡进去。找一张清晰度高的图片， <code>Addtarget</code> 。type 选择 SingleImage 。width 即在游戏场景中识别卡的单位。这里我填写了 10。上传完毕以后Rating会给出评分，越高越容易被识别，需要颜色比较鲜艳对比度比较高。然后我们勾选targe，Download database。<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-38-35.png" alt=""><br>下载完成以后依旧导入Unity中，导入完成以后我们可以看到Asserts下多了一个StreamingAsserts文件夹。<br>接下来我们下载3d模型，此处为一个<a href="https://pan.baidu.com/s/1omNU8ShRPk2-b3Y7fHQ9Ng" target="_blank" rel="external">皮卡丘</a>。下载好以后将文件夹拖入Asserts目录下即可。点击ARCamera，在Inspector里调整参数如下：<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-46-47.png" alt=""><br>即将摄像机向下旋转90°。在搜索栏搜索ImageTarget（用于放置识别卡的素材），将它拖入Hierarchy中。并在Inspector中选择其database为刚刚在官网创建的那个。然后我们将皮卡丘素材拖入场景中。<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-50-51.png" alt=""><br>在Inspector中调整position为0，0，0；Rotation为180°，这样在演示时候他就能面向观众。将皮卡丘素材拖到ImageTarget下，使他成为ImageTarget的一个子对象。<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-53-56.png" alt=""><br>然后再ARCamera中再次进入Configuration，<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_20-55-09.png" alt=""><br>此时我们已经可以运行摄像机使用识别卡识别我们的皮卡丘了。  </p>
-<h2 id="编写LeanTouch脚本"><a href="#编写LeanTouch脚本" class="headerlink" title="编写LeanTouch脚本"></a>编写LeanTouch脚本</h2><p><code>LeanTouch</code> 脚本可以实现对对象的放缩和旋转。在AssertsStore中搜索 <code>LeanTouch</code><br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-01-39.png" alt=""><br>点击并下载，完成后Import即可。<br>接下来我们给皮卡丘添加LeanTouch脚本。<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-04-21.png" alt=""><br>直接将他拖动进去即可。其余脚本在上一级的example目录下，也是直接拖动即可。  </p>
-<h2 id="Android平台的导出"><a href="#Android平台的导出" class="headerlink" title="Android平台的导出"></a>Android平台的导出</h2><ul>
-<li>安装并配置AndroidSDk环境<br>导出之前我们需要进行一些配置,Edit-&gt;Preference：<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-13-09.png" alt=""><br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-10-20.png" alt=""><br>点击到对应项下，若未安装先进行安装。<br>完成后点击如下，对Company Name,ProductName以及下边的Package Name进行修改。<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-16-06.png" alt=""><br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-06_21-16-06.png" alt=""><br>然后Build即可生成apk<br>到此结束~</li>
-</ul>
+        <p>在上一篇中我们探究了有卡的AR，在本文中我们将做脱卡模式的AR。  </p>
+<h2 id="新建场景"><a href="#新建场景" class="headerlink" title="新建场景"></a>新建场景</h2><p>新建一个场景Scene2，加入AR摄像机，添加licensekey。与之前操作相同。  </p>
+<h2 id="加入素材"><a href="#加入素材" class="headerlink" title="加入素材"></a>加入素材</h2><p><a href="https://pan.baidu.com/s/1Pnm_GGMXGtve7RcMQtvVWw" target="_blank" rel="external">素材链接</a><br>与之前相同，下载完成后导入。然后我们选择带有动画效果的那个<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-48-56.png" alt=""><br>此时运行摄像机时候我们并不能看到喷火龙的模型。我们需要移动摄像机的位置<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-55-03.png" alt=""><br>以及喷火龙的位置<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-56-16.png" alt=""><br>此时我们可以看到素材在屏幕中间了。  </p>
+<h2 id="添加动画效果"><a href="#添加动画效果" class="headerlink" title="添加动画效果"></a>添加动画效果</h2><p>我们需要将动画效果拖入右侧Inspector中，<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_10-58-25.png" alt=""><br>为了使动画能够循环显示，我们需要对Take001进行修改。点击Take001，在Inspector中点击Edit，<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_11-04-52.png" alt=""><br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_11-06-12.png" alt=""><br>此刻我们启动时候就可以看到不断挥动翅膀的喷火龙模型了。<br>而此时看到的喷火龙仍旧有些黯淡，因为我们的光源是背向它的。此时我们将光源的Rotation修改<br><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-07_11-06-12.png" alt="">  </p>
+<h2 id="编写重力加速度脚本"><a href="#编写重力加速度脚本" class="headerlink" title="编写重力加速度脚本"></a>编写重力加速度脚本</h2><p>Asserts下新建一个Scripts文件夹。在内新建一个C#脚本。  </p>
+<pre><code class="C#">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class A : MonoBehaviour {
+    float speed = 200;//一个合适的速度
+    static bool isTouched = false;//在未触摸时不启动
+    // Use this for initialization
+    void Start () {
+        isTouched = false;
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (Input.touchCount &gt;= 1)
+        {
+            isTouched = true;
+        }
+        if (isTouched)
+        {
+            //Vector3三维矢量，Input.acceleration获得重力加速度，Time.deltaTime完成上一帧所以需要的秒数
+            Vector3 mMovement = new Vector3(
+            Input.acceleration.x * speed * Time.deltaTime,
+            Input.acceleration.y * speed * Time.deltaTime);
+            //transform控制当前位移  .Translate移动相应的距离
+            transform.Translate(mMovement);
+        }
+
+    }
+}
+</code></pre>
+<p>写好脚本以后，将脚本拖入喷火龙模型的Inspector中，即可完成绑定。同时也可以在这个模型上绑定LeanTouch的放缩，拖动，控制旋转等脚本。<br>Build同之前的。<br>这时候我们就完成了所有编写，导出运行喷火龙可以实现放缩，拖动，重力感应等。<br>到此结束，谢谢阅读！</p>
 
       
     </div>
@@ -420,7 +448,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wevan.github.io/2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/" title="简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）有卡篇">http://wevan.github.io/2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/</a>
+    <a href="http://wevan.github.io/2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/" title="简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）脱卡篇">http://wevan.github.io/2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -442,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/03/基于Linux的线程和进程控制/" rel="next" title="基于Linux的线程和进程控制">
-                <i class="fa fa-chevron-left"></i> 基于Linux的线程和进程控制
+              <a href="/2018/03/06/Python实现Exccel数据批量导入数据库/" rel="next" title="Python实现Exccel数据批量导入数据库">
+                <i class="fa fa-chevron-left"></i> Python实现Exccel数据批量导入数据库
               </a>
             
           </div>
@@ -451,10 +479,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/05/Python爬虫爬取基础网页信息/" rel="prev" title="Python爬虫爬取基础网页信息">
-                Python爬虫爬取基础网页信息 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -605,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作——SDK的下载与使用"><span class="nav-number">1.</span> <span class="nav-text">准备工作——SDK的下载与使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建场景"><span class="nav-number">2.</span> <span class="nav-text">创建场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传识别卡到Vuforia官网"><span class="nav-number">3.</span> <span class="nav-text">上传识别卡到Vuforia官网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写LeanTouch脚本"><span class="nav-number">4.</span> <span class="nav-text">编写LeanTouch脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android平台的导出"><span class="nav-number">5.</span> <span class="nav-text">Android平台的导出</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建场景"><span class="nav-number">1.</span> <span class="nav-text">新建场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入素材"><span class="nav-number">2.</span> <span class="nav-text">加入素材</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加动画效果"><span class="nav-number">3.</span> <span class="nav-text">添加动画效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写重力加速度脚本"><span class="nav-number">4.</span> <span class="nav-text">编写重力加速度脚本</span></a></li></ol></div>
             
 
           </div>
@@ -758,9 +782,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://wevan.github.io/2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/';
-          this.page.identifier = '2018/01/05/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）有卡篇/';
-          this.page.title = '简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）有卡篇';
+          this.page.url = 'http://wevan.github.io/2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/';
+          this.page.identifier = '2018/03/07/简单的AR-Demo-Pockmon（Unity-高通Vuforia-SDK）脱卡篇/';
+          this.page.title = '简单的AR Demo-Pockmon（Unity+高通Vuforia SDK）脱卡篇';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://islet.disqus.com/embed.js';
