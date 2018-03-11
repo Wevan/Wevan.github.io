@@ -118,7 +118,14 @@
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/pic8.png">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/pic9.png">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/pic10.png">
-<meta property="og:updated_time" content="2018-03-11T04:29:16.613Z">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/p1.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/p2.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/p3.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/p4.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/p5.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/p6.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/p7.png">
+<meta property="og:updated_time" content="2018-03-11T13:31:26.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle 11g的安装与完全卸载">
 <meta name="twitter:description" content="安装准备工作首先先去官网下载安装包，下载地址,下载之前需要注册一个Oracle账户。完成后在下载页面找到11g Release，win64版本下载，下载的文件一共有两个，File1和File2  
@@ -423,7 +430,26 @@
 <p>修改SID为orcl  </p>
 <p><img src="http://obhl5boin.bkt.clouddn.com/pic10.png" alt="">  </p>
 <p>测试一下    </p>
-<h1 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h1><p>待更新。。</p>
+<h1 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h1><p>任务管理器中关闭所有Oracle服务  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/p1.png" alt="">  </p>
+<p>在开始菜单中，找到Universal Installer，运行Oracle Universal Installer，单击卸载产品<br>在产品清单窗口中，单击全部展开，除了OraDb11g_home1外，勾选其他项目，单击删除  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/p2.png" alt="">  </p>
+<p>打开Cmd，执行regedit，打开注册表编辑器，删除 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ 下所有Oracle开头的服务。这个键是标识Oracle在windows下注册的各种服务。  </p>
+<p><img src="" alt="">  </p>
+<p>删除计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Oracle  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/p3.png" alt="">  </p>
+<p>删除注册的oracle事件日志：删除计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application下所有以Oracle开头的项目（图中已删除一部分）  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/p4.png" alt="">  </p>
+<p>删除环境变量path中关于oracle的内容  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/p5.png" alt="">  </p>
+<p>重新启动操作系统。  </p>
+<p>重启后可以在任务管理器看到Oracle相关的进程不会再加载了（可将进程按名称正序排列后方便查看）  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/p6.png" alt="">  </p>
+<h2 id="删除oracle安装目录下的所有数据"><a href="#删除oracle安装目录下的所有数据" class="headerlink" title="删除oracle安装目录下的所有数据"></a>删除oracle安装目录下的所有数据</h2><p>完成后删除C:\Program Files下oracle目录。  </p>
+<p>.删除开始菜单下oracle项，如：<br>  <code>C:\User（用户）\用户名\Appdata\Roaming\Microsoft\Windows\Start Menu（开始菜单）\Programs（程序）</code>  </p>
+<p>  <img src="http://obhl5boin.bkt.clouddn.com/p7.png" alt="">  </p>
+<p>有时在用户名目录下有Oracle的文件了，删除即可  </p>
+<p>不删除开始菜单下的Oracle相关菜单目录也没关系，不会影响再次安装Oracle。当再次安装Oracle时，该菜单会被替换。</p>
 
       
     </div>
@@ -625,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始安装"><span class="nav-number">1.2.</span> <span class="nav-text">开始安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA连接Oracle"><span class="nav-number">1.3.</span> <span class="nav-text">IDEA连接Oracle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卸载"><span class="nav-number">2.</span> <span class="nav-text">卸载</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始安装"><span class="nav-number">1.2.</span> <span class="nav-text">开始安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA连接Oracle"><span class="nav-number">1.3.</span> <span class="nav-text">IDEA连接Oracle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卸载"><span class="nav-number">2.</span> <span class="nav-text">卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除oracle安装目录下的所有数据"><span class="nav-number">2.1.</span> <span class="nav-text">删除oracle安装目录下的所有数据</span></a></li></ol></li></ol></div>
             
 
           </div>
