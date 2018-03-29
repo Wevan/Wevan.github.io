@@ -96,7 +96,12 @@
 
 安装包一定要以管理员身份运行，否则会在最后一步报出没有权限执行的">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/eassy/Ubuntu/Snipaste_2018-03-28_20-11-24.png">
-<meta property="og:updated_time" content="2018-03-29T01:23:39.446Z">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_22-52-38.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/InkedSnipaste_2018-03-28_23-32-41_LI.jpg">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-29_09-20-38.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_21-05-39.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_21-08-11.png">
+<meta property="og:updated_time" content="2018-03-29T01:45:28.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VMware+Ubuntu安装（主题设置与输入法安装）">
 <meta name="twitter:description" content="安装安装VMware的WorkStation Pro（百度软件的亦可），Ubuntu  
@@ -422,16 +427,41 @@
 <h1 id="安装输入法"><a href="#安装输入法" class="headerlink" title="安装输入法"></a>安装输入法</h1><p>默认火狐浏览器，打开百度输入法即可，我这里安装的是搜狗输入法。下载Linux版安装包。  </p>
 <p>打开安装包所在位置，在该文件夹下打开终端  </p>
 <p>执行  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i 安装包名</div><div class="line">```  </div><div class="line"></div><div class="line">系统设置--&gt;Laguage Support，一开始的系统里面是没有小企鹅输入法的，搜狗输入法就是在小企鹅输入法基础上安装的，从语言支持里面选择小企鹅输入法（fcitx），默认为ibus  </div><div class="line"></div><div class="line">有时候会出现提示你Software database is broken，这时候终端使用</div></pre></td></tr></table></figure>
-<p>sudo apt-get install -f<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">即可</div><div class="line"></div><div class="line">系统会提示你安装language support，Install即可  </div><div class="line"></div><div class="line">安装完成后，把系统键盘输入方式从ibus切换为fcitx  </div><div class="line"></div><div class="line">![](http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_22-52-38.png)</div><div class="line"></div><div class="line">终端执行</div></pre></td></tr></table></figure></p>
-<p>sudo reboot<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">完成重启电脑。  </div><div class="line"></div><div class="line">重启完成后一般屏幕右上方有了企鹅输入fcitx，如果你是先安装了主题，那么看到的就不是小企鹅，而是下图右顶端图标中的这个A字的块  </div><div class="line"></div><div class="line">![](http://obhl5boin.bkt.clouddn.com/InkedSnipaste_2018-03-28_23-32-41_LI.jpg)</div><div class="line"></div><div class="line">右键选择Configure,点击+,</div><div class="line"></div><div class="line">![](http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-29_09-20-38.png)</div><div class="line"></div><div class="line">搜索Sougou pinyin,添加搜狗输入法,选中,OK</div><div class="line"></div><div class="line">然后再次终端执行</div></pre></td></tr></table></figure></p>
-<p>sudo reboot<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">重启完成后即可在小企鹅或者A字块图标下选择Sougou输入法输入中文</div><div class="line"># 美化主题  </div><div class="line"></div><div class="line">## 准备工作</div><div class="line"></div><div class="line">首先在Settings里将Software&amp;Updates里下载自修改为Others--&gt;aliyun服务  </div><div class="line"></div><div class="line">![](http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_21-05-39.png)  </div><div class="line"></div><div class="line">在此处你需要将所有软件更新到最新,右键Terminal终端执行</div></pre></td></tr></table></figure></p>
-<p>sudo apt-get update<br>sudo apt-get upgrade<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Linux下键入密码是不会像Windows下那样显示一串******的，你输什么它都不会显示，输就好了，也是为了安全起见  </div><div class="line"></div><div class="line">![](http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_21-08-11.png)</div><div class="line"></div><div class="line"></div><div class="line">如果执行失败报错Could not...，执行</div></pre></td></tr></table></figure></p>
-<p>ps -ef<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">找出带apt的进程，执行</div></pre></td></tr></table></figure></p>
-<p>sudo kill -9 进程号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">然后执行</div></pre></td></tr></table></figure></p>
-<p>sudo apt-get install unity-tweak-tool<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 安装主题</div><div class="line"></div><div class="line">首先安装主题</div></pre></td></tr></table></figure></p>
-<p>sudo add-apt-repository ppa:noobslab/themes<br>sudo apt-get update<br>sudo apt-get install flatabulous-theme<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">安装配套图标</div></pre></td></tr></table></figure></p>
-<p>sudo add-apt-repository ppa:noobslab/icons<br>sudo apt-get update<br>sudo apt-get install ultra-flat-icons<br>```</p>
+<p><code>sudo dpkg -i 安装包名</code></p>
+<p>系统设置–&gt;Laguage Support，一开始的系统里面是没有小企鹅输入法的，搜狗输入法就是在小企鹅输入法基础上安装的，从语言支持里面选择小企鹅输入法（fcitx），默认为ibus  </p>
+<p>有时候会出现提示你Software database is broken，这时候终端使用  </p>
+<p><code>sudo apt-get install -f</code></p>
+<p>即可</p>
+<p>系统会提示你安装language support，Install即可  </p>
+<p>安装完成后，把系统键盘输入方式从ibus切换为fcitx  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_22-52-38.png" alt=""></p>
+<p>终端执行  </p>
+<p><code>sudo reboot</code>  </p>
+<p>完成重启电脑。  </p>
+<p>重启完成后一般屏幕右上方有了企鹅输入fcitx，如果你是先安装了主题，那么看到的就不是小企鹅，而是下图右顶端图标中的这个A字的块  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/InkedSnipaste_2018-03-28_23-32-41_LI.jpg" alt=""></p>
+<p>右键选择Configure,点击+,</p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-29_09-20-38.png" alt=""></p>
+<p>搜索Sougou pinyin,添加搜狗输入法,选中,OK</p>
+<p>然后再次终端执行</p>
+<p><code>sudo reboot</code>  </p>
+<p>重启完成后即可在小企鹅或者A字块图标下选择Sougou输入法输入中文</p>
+<h1 id="美化主题"><a href="#美化主题" class="headerlink" title="美化主题"></a>美化主题</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先在Settings里将Software&amp;Updates里下载自修改为Others–&gt;aliyun服务  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_21-05-39.png" alt="">  </p>
+<p>在此处你需要将所有软件更新到最新,右键Terminal终端执行  </p>
+<p><code>sudo apt-get update</code><br><code>sudo apt-get upgrade</code>  </p>
+<p>Linux下键入密码是不会像Windows下那样显示一串<strong>**</strong>的，你输什么它都不会显示，输就好了，也是为了安全起见  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-03-28_21-08-11.png" alt=""></p>
+<p>如果执行失败报错Could not…，执行  </p>
+<p><code>ps -ef</code></p>
+<p>找出带apt的进程，执行  </p>
+<p><code>sudo kill -9 进程号</code></p>
+<p>然后执行  </p>
+<p><code>sudo apt-get install unity-tweak-tool</code></p>
+<h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><p>首先安装主题  </p>
+<p><code>sudo add-apt-repository ppa:noobslab/themes</code><br><code>sudo apt-get update</code><br><code>sudo apt-get install flatabulous-theme</code></p>
+<p>安装配套图标  </p>
+<p><code>sudo add-apt-repository ppa:noobslab/icons</code><br><code>sudo apt-get update</code><br><code>sudo apt-get install ultra-flat-icons</code></p>
 <p>安装完成后，左上角图标打开搜索unity-tweak-tool，修改主题和图标：  </p>
 <p><code>Theme</code>，修改为<code>Flatabulous</code>  </p>
 <p><code>icon</code>修改为<code>Ultra-flat</code>  </p>
@@ -639,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装输入法"><span class="nav-number">2.</span> <span class="nav-text">安装输入法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装输入法"><span class="nav-number">2.</span> <span class="nav-text">安装输入法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#美化主题"><span class="nav-number">3.</span> <span class="nav-text">美化主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">3.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装主题"><span class="nav-number">3.2.</span> <span class="nav-text">安装主题</span></a></li></ol></li></ol></div>
             
 
           </div>
