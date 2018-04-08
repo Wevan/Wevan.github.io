@@ -97,7 +97,7 @@ select instance_name from v$instance;
 创建">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_09-22-12.png">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_19-39-31.png">
-<meta property="og:updated_time" content="2018-04-08T11:51:41.908Z">
+<meta property="og:updated_time" content="2018-04-08T11:54:42.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OraOracle物理结构操作">
 <meta name="twitter:description" content="物理结构查看当前数据库名称  
@@ -452,6 +452,12 @@ select instance_name from v$instance;
 <p>使用<code>startup</code>启动，再次  </p>
 <p><code>show parameter control_files</code>  </p>
 <p>可以看到CONTROL03.CTL在其中，说明我们的镜像控制文件创建成功了</p>
+<p>若启动以后报错两个control文件版本不一致且show没有看到新建的文件，那么执行  </p>
+<p><code>alter system set control_files=&#39;F:\APP\43886\ORADATA\ORCL\CONTROL01.CTL&#39;, &#39;F:\APP\43886\FLASH_RECOVERY_AREA\ORCL\CONTROL02.CTL&#39;, &#39;E:\APP\TEMP\CONTROL03.CTL&#39; scope=spfile;</code>  </p>
+<p>然后使用  </p>
+<p><code>shutdown immediate</code>   </p>
+<p><code>startup</code>  </p>
+<p>重启，再次查看</p>
 <h2 id="查看物理文件"><a href="#查看物理文件" class="headerlink" title="查看物理文件"></a>查看物理文件</h2><h3 id="查看数据文件"><a href="#查看数据文件" class="headerlink" title="查看数据文件"></a>查看数据文件</h3><p><code>select file#,name,status,bytes/1024/1024 from v$datafile;</code></p>
 <h3 id="查看日志文件"><a href="#查看日志文件" class="headerlink" title="查看日志文件"></a>查看日志文件</h3><p><code>select * from v$logfile;</code></p>
 <h3 id="查看控制文件"><a href="#查看控制文件" class="headerlink" title="查看控制文件"></a>查看控制文件</h3><p><code>select * from v$controlfile;</code></p>
