@@ -95,7 +95,9 @@ select name from v$database;
 select instance_name from v$instance;
 创建一个数据文件alter tablespace users add datafile &amp;#39;F:\app\43886\oradata\orcl\test02.dbf&amp;#39; size 10M;
 创建">
-<meta property="og:updated_time" content="2018-04-08T03:24:40.907Z">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_09-22-12.png">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_19-39-31.png">
+<meta property="og:updated_time" content="2018-04-08T11:51:41.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OraOracle物理结构操作">
 <meta name="twitter:description" content="物理结构查看当前数据库名称  
@@ -104,6 +106,7 @@ select name from v$database;
 select instance_name from v$instance;
 创建一个数据文件alter tablespace users add datafile &amp;#39;F:\app\43886\oradata\orcl\test02.dbf&amp;#39; size 10M;
 创建">
+<meta name="twitter:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_09-22-12.png">
 
 
 
@@ -411,7 +414,8 @@ select instance_name from v$instance;
 <p><code>select instance_name from v$instance;</code></p>
 <h2 id="创建一个数据文件"><a href="#创建一个数据文件" class="headerlink" title="创建一个数据文件"></a>创建一个数据文件</h2><p><code>alter tablespace users add datafile &#39;F:\app\43886\oradata\orcl\test02.dbf&#39; size 10M;</code></p>
 <h2 id="创建一个日志文件组"><a href="#创建一个日志文件组" class="headerlink" title="创建一个日志文件组"></a>创建一个日志文件组</h2><p>首先我们需要查看日志文件组状态，只有当日志组状态为INACTIVE时，才可以对该组进行操作  </p>
-<p><code>select group#,status from v$log;</code></p>
+<p><code>select group#,status from v$log;</code>  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_09-22-12.png" alt=""></p>
 <p>默认有3个日志组，接下来我们创建第四个  </p>
 <p><code>alter database add  logfile  group 4 &#39;F:\app\43886\oradata\orcl\redo04.log&#39; size 500m;</code></p>
 <h3 id="创建-删除日志文件组员"><a href="#创建-删除日志文件组员" class="headerlink" title="创建/删除日志文件组员"></a>创建/删除日志文件组员</h3><p><code>alter database add logfile member &#39;F:\app\43886\oradata\orcl\redo04_2.log&#39; to group 4;</code></p>
@@ -429,15 +433,30 @@ select instance_name from v$instance;
 <p><code>alter system set control_files=&#39;E:\APP\43886\ORADATA\ORCL\CONTROL01.CTL&#39;,&#39;E:\APP\43886\FLASH_RECOVERY_AREA\ORCL\CONTROL02.CTL&#39; scope=spfile;</code> </p>
 <p>注意我们修改后的地址是为了防止以前的控制文件被覆盖，在修改后的地址下要有你上边路径里所写的文件以及文件名。然后再执行如下  </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">CONTROLFILE</span> <span class="keyword">REUSE</span> </div><div class="line"><span class="keyword">DATABASE</span> <span class="string">"orcl"</span></div><div class="line"><span class="keyword">NORESETLOGS</span></div><div class="line"><span class="keyword">NOARCHIVELOG</span></div><div class="line"><span class="keyword">MAXLOGFILES</span> <span class="number">50</span></div><div class="line"><span class="keyword">MAXLOGMEMBERS</span> <span class="number">3</span></div><div class="line">MAXDATAFILES <span class="number">50</span></div><div class="line"><span class="keyword">MAXINSTANCES</span> <span class="number">5</span></div><div class="line"><span class="keyword">MAXLOGHISTORY</span> <span class="number">500</span></div><div class="line"><span class="keyword">LOGFILE</span></div><div class="line"><span class="keyword">GROUP</span> <span class="number">1</span> <span class="string">'F:\APP\43886\ORADATA\ORCL\REDO01.LOG'</span> <span class="keyword">size</span> <span class="number">50</span>M,</div><div class="line"><span class="keyword">GROUP</span> <span class="number">2</span> <span class="string">'F:\APP\43886\ORADATA\ORCL\REDO02.LOG'</span> <span class="keyword">size</span> <span class="number">50</span>M,</div><div class="line"><span class="keyword">GROUP</span> <span class="number">3</span> <span class="string">'F:\APP\43886\ORADATA\ORCL\REDO03.LOG'</span> <span class="keyword">size</span> <span class="number">50</span>M</div><div class="line"><span class="keyword">DATAFILE</span></div><div class="line"><span class="string">'F:\APP\43886\ORADATA\ORCL\SYSTEM01.DBF'</span>,</div><div class="line"><span class="string">'F:\APP\43886\ORADATA\ORCL\UNDOTBS01.DBF'</span>,</div><div class="line"><span class="string">'F:\APP\43886\ORADATA\ORCL\SYSAUX01.DBF'</span>,</div><div class="line"><span class="string">'F:\APP\43886\ORADATA\ORCL\USERS01.DBF'</span>,</div><div class="line"><span class="string">'F:\UNTOTBS01.DBF'</span>,</div><div class="line"><span class="string">'F:\APP\43886\ORADATA\ORCL\EXAMPLE01.DBF'</span>,</div><div class="line"><span class="string">'F:\APP\43886\ORADATA\ORCL\TEST02.DBF'</span>,</div><div class="line"><span class="string">'F:\APP\43886\PRODUCT\11.2.0\USERDATA\DB_TEST.DBF'</span>;</div></pre></td></tr></table></figure>
-<h3 id="创建镜像控制文件"><a href="#创建镜像控制文件" class="headerlink" title="创建镜像控制文件"></a>创建镜像控制文件</h3><p>首先要关闭数据库同上  </p>
-<p>新开一个cmd窗口，执行  </p>
+<h3 id="创建镜像控制文件"><a href="#创建镜像控制文件" class="headerlink" title="创建镜像控制文件"></a>创建镜像控制文件</h3><p>新开一个cmd窗口，执行  </p>
 <p><code>copy E:\APP\43886\ORADATA\ORCL\CONTROL01.CTL E:\APP\temp\control03.ctl</code>  </p>
 <p>注意第二个路径是要拷贝的地方  </p>
-<h2 id="查看物理文件"><a href="#查看物理文件" class="headerlink" title="查看物理文件"></a>查看物理文件</h2><h3 id="查看数据文件"><a href="#查看数据文件" class="headerlink" title="查看数据文件"></a>查看数据文件</h3><p>select file#,name,status,bytes/1024/1024 from v$datafile; </p>
-<h3 id="查看日志文件"><a href="#查看日志文件" class="headerlink" title="查看日志文件"></a>查看日志文件</h3><p>select * from v$logfile; </p>
-<h3 id="查看控制文件"><a href="#查看控制文件" class="headerlink" title="查看控制文件"></a>查看控制文件</h3><p> select * from v$controlfile;</p>
-<h1 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h1><h2 id="查看有几个表空间"><a href="#查看有几个表空间" class="headerlink" title="查看有几个表空间"></a>查看有几个表空间</h2><p>SELECT t.tablespace_name, round(SUM(bytes / (1024 * 1024)), 0) ts_size FROM dba_tablespaces t, dba_data_files d WHERE t.tablespace_name = d.tablespace_name GROUP BY t.tablespace_name; </p>
-<h2 id="如何创建表空间"><a href="#如何创建表空间" class="headerlink" title="如何创建表空间"></a>如何创建表空间</h2><p>create tablespace db_test  datafile ‘F:\app\43886\product\11.2.0\userdata\db_test.dbf’  size 50m  autoextend on;</p>
+<p><code>create pfile=&#39;E:\APP\temp\pfile1.ora&#39; from spfile;</code></p>
+<p>完成后将新的路径添加在刚创建好的pfile1.ora的control_files中  </p>
+<p><code>*.control_files=&#39;F:\app\43886\oradata\orcl\control01.ctl&#39;,&#39;F:\app\43886\flash_recovery_area\orcl\control02.ctl&#39;,&#39;E:\APP\temp\CONTROL03.CTL&#39;</code>  </p>
+<p>然后使用  </p>
+<p><code>create spfile from pfile=&#39;E:\APP\temp\pfile1.ora&#39;;</code></p>
+<p>之后使用pfile启动查看  </p>
+<p><code>shutdown immediate</code></p>
+<p><code>startup spfile=&#39;E:\APP\temp\spfile1.ora&#39;</code>  </p>
+<p><code>show parameter control_files</code></p>
+<p>可以看到刚刚创建的CONTROL03.CTL已经存在了  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_19-39-31.png" alt=""></p>
+<p>然后我们再次  </p>
+<p><code>shutdown immediate</code>  </p>
+<p>使用<code>startup</code>启动，再次  </p>
+<p><code>show parameter control_files</code>  </p>
+<p>可以看到CONTROL03.CTL在其中，说明我们的镜像控制文件创建成功了</p>
+<h2 id="查看物理文件"><a href="#查看物理文件" class="headerlink" title="查看物理文件"></a>查看物理文件</h2><h3 id="查看数据文件"><a href="#查看数据文件" class="headerlink" title="查看数据文件"></a>查看数据文件</h3><p><code>select file#,name,status,bytes/1024/1024 from v$datafile;</code></p>
+<h3 id="查看日志文件"><a href="#查看日志文件" class="headerlink" title="查看日志文件"></a>查看日志文件</h3><p><code>select * from v$logfile;</code></p>
+<h3 id="查看控制文件"><a href="#查看控制文件" class="headerlink" title="查看控制文件"></a>查看控制文件</h3><p><code>select * from v$controlfile;</code></p>
+<h1 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h1><h2 id="查看有几个表空间"><a href="#查看有几个表空间" class="headerlink" title="查看有几个表空间"></a>查看有几个表空间</h2><p><code>SELECT t.tablespace_name, round(SUM(bytes / (1024 * 1024)), 0) ts_size FROM dba_tablespaces t, dba_data_files d WHERE t.tablespace_name = d.tablespace_name GROUP BY t.tablespace_name;</code></p>
+<h2 id="如何创建表空间"><a href="#如何创建表空间" class="headerlink" title="如何创建表空间"></a>如何创建表空间</h2><p><code>create tablespace db_test  datafile &#39;F:\app\43886\product\11.2.0\userdata\db_test.dbf&#39;  size 50m  autoextend on;</code></p>
 
       
     </div>
