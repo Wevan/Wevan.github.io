@@ -97,7 +97,7 @@ select instance_name from v$instance;
 创建">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_09-22-12.png">
 <meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_19-39-31.png">
-<meta property="og:updated_time" content="2018-04-08T12:02:20.295Z">
+<meta property="og:updated_time" content="2018-04-09T05:29:40.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle物理结构操作">
 <meta name="twitter:description" content="物理结构查看当前数据库名称  
@@ -437,18 +437,18 @@ select instance_name from v$instance;
 <p><code>copy E:\APP\43886\ORADATA\ORCL\CONTROL01.CTL E:\APP\temp\control03.ctl</code>  </p>
 <p>注意第二个路径是要拷贝的地方  </p>
 <p><code>create pfile=&#39;E:\APP\temp\pfile1.ora&#39; from spfile;</code></p>
-<p>完成后将新的路径添加在刚创建好的pfile1.ora的control_files中  </p>
+<p>完成后将新的路径添加在刚创建好的pfile1.ora的control_files中修改  </p>
 <p><code>*.control_files=&#39;F:\app\43886\oradata\orcl\control01.ctl&#39;,&#39;F:\app\43886\flash_recovery_area\orcl\control02.ctl&#39;,&#39;E:\APP\temp\CONTROL03.CTL&#39;</code>  </p>
-<p>然后使用  </p>
-<p><code>create spfile from pfile=&#39;E:\APP\temp\pfile1.ora&#39;;</code></p>
 <p>之后使用pfile启动查看  </p>
 <p><code>shutdown immediate</code></p>
-<p><code>startup spfile=&#39;E:\APP\temp\spfile1.ora&#39;</code>  </p>
+<p><code>startup pfile=&#39;E:\APP\temp\pfile1.ora&#39;</code>  </p>
 <p><code>show parameter control_files</code></p>
 <p>可以看到刚刚创建的CONTROL03.CTL已经存在了  </p>
-<p><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_19-39-31.png" alt=""></p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/Snipaste_2018-04-08_19-39-31.png" alt=""> </p>
+<p>然后使用  </p>
+<p><code>create spfile from pfile=&#39;E:\APP\temp\pfile1.ora&#39;;</code>  </p>
 <p>然后我们再次  </p>
-<p><code>shutdown immediate</code>  </p>
+<p><code>shutdown immediate</code> </p>
 <p>使用<code>startup</code>启动，再次  </p>
 <p><code>show parameter control_files</code>  </p>
 <p>可以看到CONTROL03.CTL在其中，说明我们的镜像控制文件创建成功了</p>
