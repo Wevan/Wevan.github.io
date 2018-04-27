@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="bitcoin源码分析此处只分析bitcoin-core交易部分源码。  
+首先先看源码对应的UML类图：  
+  
+这个UML图中包含了bitcoin交易相关的所有关键类。  
+CTransaction最核心的类的是 CTransaction 。这个类就是bitcoin的 “交易” (一般称为 Tx, 后文也使用此称)。这个类的作用大体起一个壳的作用。主要的属性是  
+12vector&amp;lt;C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bitcoin原理与源码解析">
+<meta property="og:url" content="http://wevan.github.io/2018/04/27/bitcoin原理与源码解析/index.html">
+<meta property="og:site_name" content="ISLET">
+<meta property="og:description" content="bitcoin源码分析此处只分析bitcoin-core交易部分源码。  
+首先先看源码对应的UML类图：  
+  
+这个UML图中包含了bitcoin交易相关的所有关键类。  
+CTransaction最核心的类的是 CTransaction 。这个类就是bitcoin的 “交易” (一般称为 Tx, 后文也使用此称)。这个类的作用大体起一个壳的作用。主要的属性是  
+12vector&amp;lt;C">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/20180304191219765.jpg">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/TraditionBank.jpg">
+<meta property="og:image" content="http://obhl5boin.bkt.clouddn.com/Bitcoin.jpg">
+<meta property="og:updated_time" content="2018-04-27T11:05:52.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bitcoin原理与源码解析">
+<meta name="twitter:description" content="bitcoin源码分析此处只分析bitcoin-core交易部分源码。  
+首先先看源码对应的UML类图：  
+  
+这个UML图中包含了bitcoin交易相关的所有关键类。  
+CTransaction最核心的类的是 CTransaction 。这个类就是bitcoin的 “交易” (一般称为 Tx, 后文也使用此称)。这个类的作用大体起一个壳的作用。主要的属性是  
+12vector&amp;lt;C">
+<meta name="twitter:image" content="http://obhl5boin.bkt.clouddn.com/20180304191219765.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wevan.github.io/2018/04/27/bitcoin原理与源码解析/"/>
+
+
+
+
+
+  <title>bitcoin原理与源码解析 | ISLET</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?57fcd6fbcb65fb296d034ff4a1e50a6f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ISLET</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">blank，black</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wevan.github.io/2018/04/27/bitcoin原理与源码解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wevan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://obhl5boin.bkt.clouddn.com/avtar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ISLET">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">bitcoin原理与源码解析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T16:06:29+08:00">
+                2018-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/27/bitcoin原理与源码解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/27/bitcoin原理与源码解析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/27/bitcoin原理与源码解析/" class="leancloud_visitors" data-flag-title="bitcoin原理与源码解析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="bitcoin源码分析"><a href="#bitcoin源码分析" class="headerlink" title="bitcoin源码分析"></a>bitcoin源码分析</h1><p>此处只分析<code>bitcoin-core交易部分</code>源码。  </p>
+<p>首先先看源码对应的UML类图：  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/20180304191219765.jpg" alt="">  </p>
+<p>这个UML图中包含了bitcoin交易相关的所有关键类。  </p>
+<h2 id="CTransaction"><a href="#CTransaction" class="headerlink" title="CTransaction"></a>CTransaction</h2><p>最核心的类的是 <code>CTransaction</code> 。这个类就是bitcoin的 “交易” (一般称为 Tx, 后文也使用此称)。这个类的作用大体起一个壳的作用。主要的属性是  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;CTxIn&gt; vin;</div><div class="line"><span class="built_in">vector</span>&lt;CTxOut&gt; vout;</div></pre></td></tr></table></figure>
+<p>这两个关键成员变量分别代表着比特币交易的 “收入” 与 “支出”。  </p>
+<p>比特币的交易并不是记录账户形的数据变化,比如这里建立一个银行的转账模型为：  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/TraditionBank.jpg" alt="">  </p>
+<p>而是日志形:  </p>
+<p><img src="http://obhl5boin.bkt.clouddn.com/Bitcoin.jpg" alt="">  </p>
+<p>源码的命名风格是使用前缀代表这个属性的类型，如果是flag会加上一个f。这里的 <code>vin/vout</code> 就是指代in 和 out 都是 vector 类型，所以这里我们可以看到，一个 Tx 的 <code>in/out</code> 是可以有多个的。在后文中，我们称呼 in 为 TxIn，out 为 TxOut。  </p>
+<p>另外两个属性  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> nVersion;</div><div class="line"><span class="keyword">int</span> nTimeLock;</div><div class="line">```  </div><div class="line"></div><div class="line">前者显然是用来控制版本的,后者在新的bitcoin 版本中提供了一个转账过程中能够约定时间的能力。  </div><div class="line"></div><div class="line">## CTxIn / CTxOut</div><div class="line"></div><div class="line">之前所说的比特币交易是两个人之间的转账是不太合适的，从这步起，我们直接抛弃 ”两个人之间进行交易“这样的概念，直接认为在比特币的交易系统中是不具备”所有人“这样概念(这样肯定很奇怪因为都没有所有人了比特币还有什么意义，但之后会解释)，而只是把 ”交易“ 看作 ”比特币流“ 的中转的中转节点，就像水流分叉合并的那些节点一样：  </div><div class="line"></div><div class="line">典型的 bitcoin 交易链：  </div><div class="line"></div><div class="line">![](http:<span class="comment">//obhl5boin.bkt.clouddn.com/v2-2079c8774e7e7ca1cf71ec01a79cbf3e_hd.jpg)  </span></div><div class="line"></div><div class="line">水流流量分叉图：  </div><div class="line"></div><div class="line">![](http:<span class="comment">//obhl5boin.bkt.clouddn.com/v2-b587711cc20ba245a3f52aeafc1ebdc4_hd.jpg)  </span></div><div class="line"></div><div class="line">每个交易就是一个分叉节点，而每个交易的 in / out 就是 这个中转(分叉)节点的流入和流出。  </div><div class="line"></div><div class="line">bitcoin 有一个相当相当重要的规定就是 每个 Tx 的 所有 In 进入了货币流必须在这个交易中全部流出去,流出去不代表成为其他Tx的In，而是必须要成为一个 TxOut。  </div><div class="line"></div><div class="line">所以我们可以看到，一个交易只含有一个输入和一个输出，那么这个交易并不是看作一个人转账到了另一个人身上，而是把比特币看作像流水一样的货币流，从某个地方流入到了这个交易的输入，由从这个交易的输出流到另一个地方去。  </div><div class="line"></div><div class="line">### CTxIn</div><div class="line"></div><div class="line">`COutPoint` 这个类如其名，就是起到 Point 的作用，但是它的命名是 OutPoint， 最初接触的时肯定会感到迷惑。但这个名字确实起得十分正确：TxIn 虽然按照之前的分析可知它是 Tx 的 流入，而流入 Tx 必定来自于 另一个 Tx。 TxIn 只是 Tx 的一个属性，描述了 本 Tx 的 ”流入“ 的情况，但它本身也是个壳，而从哪个Tx流入的信息就是由 COutPoint 所记录。所以对于本 Tx 来说，TxIn 所含有的 ”从哪流入的“ ,上一个 Tx 对于本 Tx 来说 就是上一个 Tx 的 Out 的指向。而本 Tx 是不能持有上一个 Tx 的 out 的，所以就使用了 Point 指针来记录。  </div><div class="line"></div><div class="line">nSequence 在 v0<span class="number">.1</span> 中没有起到什么作用，也不会用来作校验，但是这个字段今后被作为了其他用途，而且成为了bitcoin的一个软分叉的最佳例子。  </div><div class="line"></div><div class="line">### CTxOut  </div><div class="line"></div><div class="line">`value` 就是记录着”从这个出口会流出多少“的信息。  </div><div class="line"></div><div class="line">`scriptSig / scriptPubkey` 就是控制 ”凭什么从这里流出“ 的机制。这两个属性就是 导致今后著名的”智能合约“的雏形。  </div><div class="line"></div><div class="line">在刚才的讨论中我们知道，比特币流从一个交易流动到了另一个交易，像这样一直传递下去。但是这样显然是不行的，因为没有人宣告这个”流“的归属。换句话说，我们在日常中使用<span class="number">100</span>块钱进行交易，核心是因为这<span class="number">100</span>块的纸币从一个人的手上流动到了另个一个人的手上。  </div><div class="line"></div><div class="line">但是在比特币的体系中，请直接抛弃这种思想，而是使用另一种方式来思考，而这种方式当你换个角度看的时候它就和你交易<span class="number">100</span>块的纸币是相同的。  </div><div class="line"></div><div class="line">这种思想那就是当我们重新审视交易的时候，我们发现货币流是从一个(多个)交易流向一个(多个)交易的过程。那么如果我们有独特的手段能够控制它为什么能流动，比如说在流出去的时候我们采取一个手段给这个出口 out 上一个锁，而当你想控制这个从这个出口出去的流的时候你就创造一把能打开这个锁的钥匙，作为下一个交易的 in 。也就是说我们连续的看<span class="number">2</span>个交易的中间部分：前一个交易的 out 和 后一个交易的 in。如果我们能把 前一个 out 加一个锁，然后规定后一个 in 要能成立的条件是 in 附带的 钥匙 能够打开out锁。那么因为上锁和开锁是“个人”行为，但一个交易的out被上了一把只有一个特别的人才能打开的锁，那么就像本应该从这个out流出去的货币被“锁在了这个out”里面,这个上锁的过程不需要这个特别的人参与，这个特别的人只需要提供一点信息代表这把锁只能他打开就行,就是指地址。那么这种行为就等价于只有这个特别的人才能“控制”这个Tx的Out，也就是只有这个特别的人才能 “占有” Out 里面被锁住的钱。  </div><div class="line"></div><div class="line">虽然这个钱并不像现实生活中能够实实在在的把这<span class="number">100</span>块钱拿到手上，而只能是通过 in/out 的锁控制 钱的流动。但是我们换个方向想，虽然我们只能提供这个“钥匙”，但是这个“钥匙和锁”能够控制 out 所含有的货币流动，那么这个 in/out 的上锁开锁机制就相当于你占有了这笔钱。 </div><div class="line"></div><div class="line">所以我们可以看到，我们所谓的转账在bitcoin的系统当中，例如A转账<span class="number">100</span>给B，那么就需要 B 向A 提供一些信息(bitcoin地址)，这个信息不会暴露B的个人情况，但是可以表面B能够控制由这个信息产生的锁。随后 A 就可以创建一个交易，这个交易的out 就可以用B 提供的这个信息上了一把只有B能够控制的锁，然后这个交易的 in 就是 由 A 提供 A 能够控制的其他交易的Out 的 对应的钥匙。 如下图所示：  </div><div class="line"></div><div class="line">![](http:<span class="comment">//obhl5boin.bkt.clouddn.com/v2-e6c1786bc1f9a1bdc937ab2db203d9e7_hd.jpg)  </span></div><div class="line"></div><div class="line">CTxIn 和 CTxOut 的属性 scriptSig 和 scriptPubkey 就是刚在我们讨论中的 钥匙 和 锁。 scriptSig 就是用于对应签名的钥匙，而 scriptPubkey就是 B 提供了地址而生成的锁。  </div><div class="line"></div><div class="line">而我们所说的实现钥匙和锁的功能，依靠的就是 这两个属性的类型 -&gt; CScript  </div><div class="line"></div><div class="line">### COutPoint</div><div class="line"></div><div class="line">这个类含有两个属性  </div><div class="line"></div><div class="line">```C++ </div><div class="line"><span class="keyword">class</span> COutPoint&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    uint256 hash;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> n;</div><div class="line">&#125;;</div><div class="line">```  </div><div class="line"></div><div class="line">这里的 hash 指代的就是 txin 所来自的那个Tx的 hash, 而n指代这个 in 是来自上一个交易的第 n 个 out:  </div><div class="line"></div><div class="line">![](http:<span class="comment">//obhl5boin.bkt.clouddn.com/v2-0f710391e1b053224538a5bf1861e2e3_hd.jpg)  </span></div><div class="line"></div><div class="line">### CInPoint</div><div class="line"></div><div class="line">这个类只出现在一个维护 COutPoint与CInPoint的 <span class="built_in">map</span> 中。</div><div class="line">所以我们认为 CInPoint 和 COutPoint 是 键值对应关系。当我们确认了一个 COutPoint 的时候，我们可以假装把这个COutPoint看作是上一个 Tx 的 Out， 那么 这个 <span class="built_in">map</span> 对应的 CInPoint 意思就是指代为 上一个 Tx的Out 指向的 下一个。   </div><div class="line"></div><div class="line">CTransaction* 是一个 针对  COutPoint 这个Out 指向的 In 所在的那个交易。那么在COutPoint那个图的例子中就是指代当前的Tx 这个 Tx 的指针。而这里的 n 就是指代 这个 In 是当前的 Tx 的 第 n 个 In, 在上图中也同样是 <span class="number">0</span> (因为只有<span class="number">1</span>个In)。  </div><div class="line"></div><div class="line">### CScript</div><div class="line"></div><div class="line">Script 实际上就是一串 Bytes 流。只不过这个字节流 是可以被解析为 &lt;指令&gt; 或者 &lt;指令&gt; &lt;数据&gt; 这样的一个一个元信息。而一个 Script 就是这些元信息组成的字节流。  </div><div class="line"></div><div class="line">### CTxIndex / CDiskTxPos</div><div class="line"></div><div class="line">他们是用来Tx 在本地的存储与索引使用的。在bitcoin的源码中，CTxIndex 是很重要的一个类，它的存储，更新和删除控制这能否在本地存储中找到这个对应的 Tx 数据，以及标注这个Tx 是否被花费。  </div><div class="line"></div><div class="line">```C++</div><div class="line"><span class="keyword">class</span> CTxIndex&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CDiskTxPos pos;</div><div class="line">    <span class="built_in">vector</span>&lt;CDiskTxPos&gt; vSpent;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">class</span> CDiskTxPos&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> nFile;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> nBlockPos;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> nTxPos;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在存储中，bitcoin 使用 Tx 的hash 为键，CTxIndex 为值进行存储。所以在拿到一个 CTransaction(或其子类)可以通过得到这个Tx的 hash 索引本地的存储 得到这个Tx 所对应的 TxIndex。  </p>
+<p>而 TxIndex 的属性 <code>vSpent</code> 就是一个相当重要的属性，因为这关系到一个 Tx 的Out 是否是 <code>UTXO(Unspent Transaction Output)</code>。由前文的讨论可知，那么一个 UTXO 就是一个被上锁了但是没有被开锁过的 Out。而这个TxIndex 的 vSpent 是一个 vector ，它和当前 Tx 的 vout 相对应。  </p>
+<p>这里我们要强调，Tx 的产生和 确认 不是同一个决定的。产生Tx 的称为 client ,接受确认这个Tx 合法的是 Server， Client 和 Server 存储的CTxIndex 是不会进行传输的！所以CTxIndex 在 C/S 上是分别生成的。那么我们使用 CTxIndex 的 vSpent 来标识这个 Out 是不是一个 UTXO 就相当重要了。因为 C / S 分别的存储都是根据自己的历史生成的，所以如果 Client 要欺骗别人， 是不能在 别人自己的验证中通过的。  </p>
+<p>举例来说就是 A 产生了Tx 并告诉别人来确认这个 Tx 是合法的，但是 A 使用的一个 in 来自的一个 Out 是已经被花费过的，比如我们假设这个Out所在的Tx叫做 Tx_prev，这个Out是第3个Out，但是A不管，仍然使用了这个被花费过的Out。那么当别人收到这个Tx进行验证的时候，他们就检查自己Tx_prev所对应的自己的本地存储的 Tx_index_prev ，然后一检查 vSpent[3] 是否是null, 如果是null 那么就是合法的，如果不是Null，那么就代表这个Out已经被花费过了。可见这里的验证是和A的本地存储无关的，A不可能修改自己的本地存储来欺骗别人。因为传输的内容只有 Tx, 而 TxIndex 是各个节点根据收到的Tx或block 自己生成的。所以节点们一检查发现 vSpent[3] 不是个 null, 那么就会认为 A的那个 Tx 是非法的。</p>
+<p>而 <code>CDiskTxPos</code> 是代表这这个 Tx 在本地存储的位置。 在bitcoin 源码中，Tx 的存储是紧密的排列在文件当中的，而找到这个Tx就是首先找到存储的文件，再找到这个Tx在这个文件中的偏移。所以 nFile和 nTxPos 就分别代表着是<em>哪一个文件</em>和<em>在文件中的偏移位置</em>。</p>
+<p><code>nBlockPos</code> 代表这个 Tx 在 Block 中的位置。  </p>
+<h3 id="CMerkleTx"><a href="#CMerkleTx" class="headerlink" title="CMerkleTx"></a>CMerkleTx</h3><p>这个类是 Tx 的子类，这个类使用来在Block 中相关处理的时候用的。CMerkleTx 是矿工(前文指代的server)所保存Tx时相关的类  </p>
+<p>它在原本的Tx的基础上添加了3个属性  </p>
+<pre><code class="C++"><span class="keyword">class</span> CMerkleTx : <span class="keyword">public</span> CTransaction{
+<span class="keyword">public</span>:
+    uint256 hashBlock;
+    <span class="built_in">vector</span>&lt;uint256&gt; vMerkleBranch;
+    <span class="keyword">int</span> nIndex;
+};
+</code></pre>
+<ul>
+<li>hashBlock代表着当前的 Tx 所在的Block 的hash(作为索引)</li>
+<li>vMerkleBranch是用来验证Tx 在block中的附加信息</li>
+<li>index代表着该Tx在block中的位置  </li>
+</ul>
+<h3 id="CWalletTx"><a href="#CWalletTx" class="headerlink" title="CWalletTx"></a>CWalletTx</h3><p>这个类是 CMerkleTx 的子类，实际上就是我们产生Tx以及和wallet相关的Tx。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Wevan
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wevan.github.io/2018/04/27/bitcoin原理与源码解析/" title="bitcoin原理与源码解析">http://wevan.github.io/2018/04/27/bitcoin原理与源码解析/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/08/Oracle物理结构操作/" rel="next" title="Oracle物理结构操作">
+                <i class="fa fa-chevron-left"></i> Oracle物理结构操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://obhl5boin.bkt.clouddn.com/avtar.png"
+                alt="Wevan" />
+            
+              <p class="site-author-name" itemprop="name">Wevan</p>
+              <p class="site-description motion-element" itemprop="description">blingbling~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Wevan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bitcoin源码分析"><span class="nav-number">1.</span> <span class="nav-text">bitcoin源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CTransaction"><span class="nav-number">1.1.</span> <span class="nav-text">CTransaction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMerkleTx"><span class="nav-number">1.1.1.</span> <span class="nav-text">CMerkleTx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CWalletTx"><span class="nav-number">1.1.2.</span> <span class="nav-text">CWalletTx</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">true</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://islet.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://wevan.github.io/2018/04/27/bitcoin原理与源码解析/';
+          this.page.identifier = '2018/04/27/bitcoin原理与源码解析/';
+          this.page.title = 'bitcoin原理与源码解析';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://islet.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("JA27xsMi9lrA6z9imd0pGsSD-gzGzoHsz", "DRrv1wL2T7c5v4PkDSpmwmoA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
